@@ -65,7 +65,8 @@ def to_16k(wave: np.ndarray, rate: int) -> np.ndarray:
 def _say(text: str, voice: str, lang: str) -> np.ndarray:
     with tempfile.TemporaryDirectory() as tmp:
         aiff, wav = f"{tmp}/a.aiff", f"{tmp}/a.wav"
-        subprocess.run(["say", "-v", voice, "-o", aiff, text], check=True)
+        Path(f"{tmp}/a.txt").write_text(text)   # from a file, so odd punctuation cannot confuse it
+        subprocess.run(["say", "-v", voice, "-o", aiff, "-f", f"{tmp}/a.txt"], check=True)
         subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", aiff,
                         "-ar", str(RATE), "-ac", "1", wav], check=True)
         wave, rate = sf.read(wav, dtype="float32")
@@ -162,6 +163,8 @@ def _vosk_synth():
 
 def _vosk(text: str, voice: str, lang: str) -> np.ndarray:
     with tempfile.TemporaryDirectory() as tmp:
+        for odd, plain in {"–": "-", "—": "-", "…": ".", "«": "", "»": "", "“": "", "”": ""}.items():
+            text = text.replace(odd, plain)     # Vosk only knows plain punctuation
         _vosk_synth().synth(text, f"{tmp}/a.wav", speaker_id=int(voice))
         wave, rate = sf.read(f"{tmp}/a.wav", dtype="float32")
     return to_16k(wave, rate)

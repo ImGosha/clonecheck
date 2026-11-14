@@ -1,0 +1,5 @@
+{
+  "layer": 10,
+  "recipe": "many + phone",
+  "why": "Chosen on dev data only (scripts/evaluate_dev.py, results/dev_recipes.csv). Layer 10 separates real dev voices from Silero best. 'many + phone' has the fewest false alarms on the two real sources never trained on when heard through the phone line, which is the condition a scam call arrives in."
+}
