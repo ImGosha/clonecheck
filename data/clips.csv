@@ -14254,3 +14254,63 @@ vosk_ru_podlodka_test_011,data/audio/fake/vosk/ru/vosk_ru_podlodka_test_011.wav,
 vosk_ru_podlodka_test_012,data/audio/fake/vosk/ru/vosk_ru_podlodka_test_012.wav,fake,ru,generated,vosk,2,test,-1,,"Всем, привет, друзья! с вами подкаст «подлодка». меня зовут женя кателла. со мной сегодня стас цыганов. стас, привет!",podlodka
 vosk_ru_podlodka_test_013,data/audio/fake/vosk/ru/vosk_ru_podlodka_test_013.wav,fake,ru,generated,vosk,3,test,-1,,Потому что по айдишнику клиента уже можно было как-то вот эту пачку транзакций связать из разных микросервисов.,podlodka
 vosk_ru_podlodka_test_014,data/audio/fake/vosk/ru/vosk_ru_podlodka_test_014.wav,fake,ru,generated,vosk,4,test,-1,,"И бывает такое, что, вот, здесь могут путаться просто потому, что картины вот этих вот пиков найденных (особенно если вот говорить про старые алгоритмы), они могут быть очень похожи. такое может быть.",podlodka
+real_own_en_01,data/audio/own/en_01.wav,real,en,own,,own,test,-1,,"Hi Grandma, it's me. Can you hear me okay?",own
+chatterbox_clone_en_01,data/audio/fake/chatterbox_clone/en_01.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"Hi Grandma, it's me. Can you hear me okay?",own
+real_own_en_02,data/audio/own/en_02.wav,real,en,own,,own,test,-1,,I'm in a bit of trouble and I need your help right now.,own
+chatterbox_clone_en_02,data/audio/fake/chatterbox_clone/en_02.wav,fake,en,generated,chatterbox_clone,own,test,-1,,I'm in a bit of trouble and I need your help right now.,own
+real_own_en_03,data/audio/own/en_03.wav,real,en,own,,own,test,-1,,"Please don't tell Mom and Dad, I don't want them to worry.",own
+chatterbox_clone_en_03,data/audio/fake/chatterbox_clone/en_03.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"Please don't tell Mom and Dad, I don't want them to worry.",own
+real_own_en_04,data/audio/own/en_04.wav,real,en,own,,own,test,-1,,I had a car accident and I need money to fix it today.,own
+chatterbox_clone_en_04,data/audio/fake/chatterbox_clone/en_04.wav,fake,en,generated,chatterbox_clone,own,test,-1,,I had a car accident and I need money to fix it today.,own
+real_own_en_05,data/audio/own/en_05.wav,real,en,own,,own,test,-1,,Can you send two thousand dollars? I will pay you back next week.,own
+chatterbox_clone_en_05,data/audio/fake/chatterbox_clone/en_05.wav,fake,en,generated,chatterbox_clone,own,test,-1,,Can you send two thousand dollars? I will pay you back next week.,own
+real_own_en_06,data/audio/own/en_06.wav,real,en,own,,own,test,-1,,"Practice starts at six tomorrow morning, so we have to leave early.",own
+chatterbox_clone_en_06,data/audio/fake/chatterbox_clone/en_06.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"Practice starts at six tomorrow morning, so we have to leave early.",own
+real_own_en_07,data/audio/own/en_07.wav,real,en,own,,own,test,-1,,I finished my homework and now I'm going to the rink.,own
+chatterbox_clone_en_07,data/audio/fake/chatterbox_clone/en_07.wav,fake,en,generated,chatterbox_clone,own,test,-1,,I finished my homework and now I'm going to the rink.,own
+real_own_en_08,data/audio/own/en_08.wav,real,en,own,,own,test,-1,,The weather in Milwaukee was cold and windy all weekend.,own
+chatterbox_clone_en_08,data/audio/fake/chatterbox_clone/en_08.wav,fake,en,generated,chatterbox_clone,own,test,-1,,The weather in Milwaukee was cold and windy all weekend.,own
+real_own_en_09,data/audio/own/en_09.wav,real,en,own,,own,test,-1,,"We won the game on Saturday, three goals to one.",own
+chatterbox_clone_en_09,data/audio/fake/chatterbox_clone/en_09.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"We won the game on Saturday, three goals to one.",own
+real_own_en_10,data/audio/own/en_10.wav,real,en,own,,own,test,-1,,Could you pick me up after school at half past three?,own
+chatterbox_clone_en_10,data/audio/fake/chatterbox_clone/en_10.wav,fake,en,generated,chatterbox_clone,own,test,-1,,Could you pick me up after school at half past three?,own
+real_own_en_11,data/audio/own/en_11.wav,real,en,own,,own,test,-1,,I left my phone charger at your house last night.,own
+chatterbox_clone_en_11,data/audio/fake/chatterbox_clone/en_11.wav,fake,en,generated,chatterbox_clone,own,test,-1,,I left my phone charger at your house last night.,own
+real_own_en_12,data/audio/own/en_12.wav,real,en,own,,own,test,-1,,"The bus was late again, so I walked the whole way home.",own
+chatterbox_clone_en_12,data/audio/fake/chatterbox_clone/en_12.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"The bus was late again, so I walked the whole way home.",own
+real_own_en_13,data/audio/own/en_13.wav,real,en,own,,own,test,-1,,"Let's have dinner together on Sunday, I'll bring dessert.",own
+chatterbox_clone_en_13,data/audio/fake/chatterbox_clone/en_13.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"Let's have dinner together on Sunday, I'll bring dessert.",own
+real_own_en_14,data/audio/own/en_14.wav,real,en,own,,own,test,-1,,"My new phone number is different, please save this one.",own
+chatterbox_clone_en_14,data/audio/fake/chatterbox_clone/en_14.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"My new phone number is different, please save this one.",own
+real_own_en_15,data/audio/own/en_15.wav,real,en,own,,own,test,-1,,"Thank you so much, I love you, talk to you soon.",own
+chatterbox_clone_en_15,data/audio/fake/chatterbox_clone/en_15.wav,fake,en,generated,chatterbox_clone,own,test,-1,,"Thank you so much, I love you, talk to you soon.",own
+real_own_ru_01,data/audio/own/ru_01.wav,real,ru,own,,own,test,-1,,"Привет, бабушка, это я. Ты меня хорошо слышишь?",own
+chatterbox_clone_ru_01,data/audio/fake/chatterbox_clone/ru_01.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Привет, бабушка, это я. Ты меня хорошо слышишь?",own
+real_own_ru_02,data/audio/own/ru_02.wav,real,ru,own,,own,test,-1,,"У меня небольшие неприятности, и мне срочно нужна твоя помощь.",own
+chatterbox_clone_ru_02,data/audio/fake/chatterbox_clone/ru_02.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"У меня небольшие неприятности, и мне срочно нужна твоя помощь.",own
+real_own_ru_03,data/audio/own/ru_03.wav,real,ru,own,,own,test,-1,,"Пожалуйста, не говори маме и папе, я не хочу, чтобы они волновались.",own
+chatterbox_clone_ru_03,data/audio/fake/chatterbox_clone/ru_03.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Пожалуйста, не говори маме и папе, я не хочу, чтобы они волновались.",own
+real_own_ru_04,data/audio/own/ru_04.wav,real,ru,own,,own,test,-1,,"У меня случилась авария, и сегодня нужны деньги на ремонт машины.",own
+chatterbox_clone_ru_04,data/audio/fake/chatterbox_clone/ru_04.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"У меня случилась авария, и сегодня нужны деньги на ремонт машины.",own
+real_own_ru_05,data/audio/own/ru_05.wav,real,ru,own,,own,test,-1,,Ты можешь перевести две тысячи долларов? Я верну на следующей неделе.,own
+chatterbox_clone_ru_05,data/audio/fake/chatterbox_clone/ru_05.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,Ты можешь перевести две тысячи долларов? Я верну на следующей неделе.,own
+real_own_ru_06,data/audio/own/ru_06.wav,real,ru,own,,own,test,-1,,"Тренировка начинается завтра в шесть утра, поэтому нам нужно выехать пораньше.",own
+chatterbox_clone_ru_06,data/audio/fake/chatterbox_clone/ru_06.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Тренировка начинается завтра в шесть утра, поэтому нам нужно выехать пораньше.",own
+real_own_ru_07,data/audio/own/ru_07.wav,real,ru,own,,own,test,-1,,"Уроки сделаны, и теперь я иду на каток.",own
+chatterbox_clone_ru_07,data/audio/fake/chatterbox_clone/ru_07.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Уроки сделаны, и теперь я иду на каток.",own
+real_own_ru_08,data/audio/own/ru_08.wav,real,ru,own,,own,test,-1,,В Милуоки все выходные было холодно и ветрено.,own
+chatterbox_clone_ru_08,data/audio/fake/chatterbox_clone/ru_08.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,В Милуоки все выходные было холодно и ветрено.,own
+real_own_ru_09,data/audio/own/ru_09.wav,real,ru,own,,own,test,-1,,В субботу мы выиграли матч со счётом три один.,own
+chatterbox_clone_ru_09,data/audio/fake/chatterbox_clone/ru_09.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,В субботу мы выиграли матч со счётом три один.,own
+real_own_ru_10,data/audio/own/ru_10.wav,real,ru,own,,own,test,-1,,Ты можешь забрать меня после школы в половине четвёртого?,own
+chatterbox_clone_ru_10,data/audio/fake/chatterbox_clone/ru_10.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,Ты можешь забрать меня после школы в половине четвёртого?,own
+real_own_ru_11,data/audio/own/ru_11.wav,real,ru,own,,own,test,-1,,Вчера вечером моя зарядка от телефона осталась у тебя дома.,own
+chatterbox_clone_ru_11,data/audio/fake/chatterbox_clone/ru_11.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,Вчера вечером моя зарядка от телефона осталась у тебя дома.,own
+real_own_ru_12,data/audio/own/ru_12.wav,real,ru,own,,own,test,-1,,"Автобус снова опоздал, поэтому домой пришлось идти пешком.",own
+chatterbox_clone_ru_12,data/audio/fake/chatterbox_clone/ru_12.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Автобус снова опоздал, поэтому домой пришлось идти пешком.",own
+real_own_ru_13,data/audio/own/ru_13.wav,real,ru,own,,own,test,-1,,"Давай поужинаем вместе в воскресенье, я принесу десерт.",own
+chatterbox_clone_ru_13,data/audio/fake/chatterbox_clone/ru_13.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Давай поужинаем вместе в воскресенье, я принесу десерт.",own
+real_own_ru_14,data/audio/own/ru_14.wav,real,ru,own,,own,test,-1,,"У меня теперь другой номер телефона, сохрани, пожалуйста, этот.",own
+chatterbox_clone_ru_14,data/audio/fake/chatterbox_clone/ru_14.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"У меня теперь другой номер телефона, сохрани, пожалуйста, этот.",own
+real_own_ru_15,data/audio/own/ru_15.wav,real,ru,own,,own,test,-1,,"Большое спасибо, я тебя люблю, скоро созвонимся.",own
+chatterbox_clone_ru_15,data/audio/fake/chatterbox_clone/ru_15.wav,fake,ru,generated,chatterbox_clone,own,test,-1,,"Большое спасибо, я тебя люблю, скоро созвонимся.",own
