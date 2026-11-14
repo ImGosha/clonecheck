@@ -11,6 +11,7 @@ Generators (all free and run on this computer):
     silero   Silero text-to-speech
     kokoro   Kokoro-82M (English only)
     bark     Suno's Bark, a generative audio model
+    chatterbox  Resemble AI's Chatterbox, a 2025 voice-cloning model
 """
 from __future__ import annotations
 
@@ -41,6 +42,9 @@ VOICES = {
                "ru": []},
     "bark": {"en": [f"v2/en_speaker_{i}" for i in range(6)],
              "ru": [f"v2/ru_speaker_{i}" for i in range(6)]},
+    # Chatterbox needs older libraries, so it runs from its own environment
+    # (scripts/generate_chatterbox.py), not through speak() below.
+    "chatterbox": {"en": ["default"], "ru": ["default"]},
 }
 
 

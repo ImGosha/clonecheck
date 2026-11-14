@@ -13,6 +13,10 @@ Fake speech (the same kind of sentences, spoken by AI voice generators):
     every other generator              -> never trained on and never used to choose
                                           anything; only scored at the end (test)
 
+Real speech from other sources (LibriSpeech, Golos), added by
+scripts/add_real_sources.py: their test parts are test-only; their
+validation parts are dev.
+
 A sentence is never shared between train, dev and test, so the detector
 cannot pass by remembering words.
 """
@@ -36,7 +40,7 @@ LANGS = {"en": "en_us", "ru": "ru_ru"}
 ENGINE_ROLE = {
     "say": "train", "piper": "train", "mms": "train",
     "silero": "dev",
-    "kokoro": "test", "bark": "test",
+    "kokoro": "test", "bark": "test", "chatterbox": "test",
 }
 TRAIN_ENGINES = [e for e, r in ENGINE_ROLE.items() if r == "train"]
 

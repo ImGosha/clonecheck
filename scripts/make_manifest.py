@@ -19,8 +19,8 @@ from clonecheck.config import AUDIO, ENGINE_ROLE, LANGS, MANIFEST, RAW, ROOT, TR
 from clonecheck.voices import VOICES
 
 MAX_CHARS = 200          # very long sentences are skipped for fake speech
-BARK_MAX_CHARS = 130     # Bark can only generate about 13 seconds
-BARK_SENTENCES = 100     # Bark is slow, so it gets a smaller sample
+SLOW_MAX_CHARS = 130     # Bark can only generate about 13 seconds
+SLOW = {"bark": 100, "chatterbox": 60}   # slow generators get a smaller sample
 
 
 def read_fleurs(lang: str, split: str) -> pd.DataFrame:
@@ -77,8 +77,8 @@ def main() -> None:
                 if per_sentence == 0:
                     continue
                 chosen = group
-                if engine == "bark":
-                    chosen = group[group["text"].str.len() <= BARK_MAX_CHARS].head(BARK_SENTENCES)
+                if engine in SLOW:
+                    chosen = group[group["text"].str.len() <= SLOW_MAX_CHARS].head(SLOW[engine])
                 for i, r in enumerate(chosen.itertuples()):
                     for k in range(min(per_sentence, len(voices))):
                         voice = voices[(i + k) % len(voices)]

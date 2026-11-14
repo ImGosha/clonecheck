@@ -17,13 +17,15 @@ CloneCheck helps a grandparent who gets a phone call from "a grandchild in troub
 
 **Real voices.** [FLEURS](https://huggingface.co/datasets/google/fleurs): people reading sentences aloud, in English (US) and Russian. 2,172 recordings.
 
-**Fake voices.** The same kind of sentences read by six AI voice generators that run on a laptop.
+**Real voices from other sources (added before any scoring).** 300 clips each from the test parts of [LibriSpeech](https://www.openslr.org/12) (English audiobooks) and [Golos](https://github.com/sberdevices/golos) (Russian, people speaking into their own phones). These are test-only: they check whether real people recorded somewhere else get flagged. Their validation parts are dev data.
+
+**Fake voices.** The same kind of sentences read by seven AI voice generators that run on a laptop.
 
 | Generator | Role | Why |
 |---|---|---|
 | macOS `say`, Piper, MMS | **train** | The detector learns from these three |
 | Silero | **dev** | Never trained on. Used to choose settings (which model layer, which training recipe) |
-| Kokoro, Bark, and any generator added later | **test** | Never trained on, never used to choose anything. Scored once at the end |
+| Kokoro, Bark, Chatterbox, and any generator added later | **test** | Never trained on, never used to choose anything. Scored once at the end |
 
 **Sentences.** No sentence appears in more than one of train, dev and test, so a model cannot pass by remembering words.
 
@@ -54,8 +56,8 @@ CloneCheck helps a grandparent who gets a phone call from "a grandchild in troub
 
 ## Sources so far
 
-- **Data:** [FLEURS](https://huggingface.co/datasets/google/fleurs) (Google, CC BY 4.0).
-- **Voice generators:** macOS `say`; [Piper](https://github.com/OHF-Voice/piper1-gpl) with [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices); [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng) (Meta); [Silero](https://github.com/snakers4/silero-models); [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M); [Bark](https://huggingface.co/suno/bark-small) (Suno).
+- **Data:** [FLEURS](https://huggingface.co/datasets/google/fleurs) (Google, CC BY 4.0); [LibriSpeech](https://www.openslr.org/12) (CC BY 4.0); [Golos](https://github.com/sberdevices/golos) (SberDevices), through the [10-hour crowd subset](https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd).
+- **Voice generators:** macOS `say`; [Piper](https://github.com/OHF-Voice/piper1-gpl) with [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices); [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng) (Meta); [Silero](https://github.com/snakers4/silero-models); [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M); [Bark](https://huggingface.co/suno/bark-small) (Suno); [Chatterbox](https://github.com/resemble-ai/chatterbox) (Resemble AI).
 - **Pretrained model:** [XLS-R 300M](https://huggingface.co/facebook/wav2vec2-xls-r-300m) (Meta).
 - **Libraries:** PyTorch, Hugging Face Transformers, scikit-learn, librosa, SciPy, pandas, soundfile.
 - **AI tools:** [Claude Code](https://claude.com/claude-code) (Anthropic) was used heavily as a coding assistant.
