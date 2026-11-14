@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+.pytest_cache/
+.claude/
+.env
+# audio is large and can be rebuilt with the scripts; features are kept
+data/raw/
+data/audio/
+models_cache/
