@@ -44,6 +44,7 @@ ENGINE_ROLE = {
     "silero": "dev",
     "kokoro": "test", "bark": "test", "chatterbox": "test", "vosk": "test",
     "chatterbox_clone": "test",   # Chatterbox copying my own voice (scripts/own_voice.py)
+    "chatterbox_clone2": "test",  # the same, from my second recording session
 }
 TRAIN_ENGINES = [e for e, r in ENGINE_ROLE.items() if r == "train"]
 
@@ -56,7 +57,7 @@ REAL_SOURCE_ROLE = {
     "fleurs": "train", "librispeech": "train", "voxpopuli": "train",   # English (FLEURS: both)
     "golos": "train", "rulibrispeech": "train",                        # Russian
     "dialects": "dev", "sova": "dev",
-    "minds": "test", "ami": "test", "podlodka": "test", "own": "test",
+    "minds": "test", "ami": "test", "podlodka": "test", "own": "test", "own2": "test",
 }
 TRAIN_SOURCES = [s for s, r in REAL_SOURCE_ROLE.items() if r == "train"]
 

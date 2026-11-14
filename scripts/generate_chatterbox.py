@@ -56,7 +56,7 @@ def speak(text: str, lang: str, reference: str | None = None) -> np.ndarray:
 def main() -> None:
     if len(sys.argv) > 1 and sys.argv[1] == "--clone":
         out_dir = Path(sys.argv[2])
-        own = ROOT / "data" / "audio" / "own"
+        own = Path(sys.argv[3]) if len(sys.argv) > 3 else ROOT / "data" / "audio" / "own"
         jobs = [(r.lang, r.text, out_dir / f"{r.id}.wav", str(own / f"_reference_{r.lang}.wav"))
                 for r in pd.read_csv(ROOT / "data" / "own_sentences.csv").itertuples()]
     else:

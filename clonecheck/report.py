@@ -27,7 +27,8 @@ NICE = {"say": "macOS say", "piper": "Piper", "mms": "MMS", "silero": "Silero", 
         "fleurs": "FLEURS", "librispeech": "LibriSpeech", "voxpopuli": "VoxPopuli", "golos": "Golos",
         "rulibrispeech": "RuLibriSpeech", "dialects": "English Dialects", "sova": "SOVA",
         "minds": "MInDS-14 (calls to a bank)", "ami": "AMI (meetings)", "podlodka": "Podlodka (podcast)",
-        "own": "My own voice"}
+        "own": "My own voice", "own2": "My own voice, second recording",
+        "chatterbox_clone2": "Chatterbox copying my voice, second recording"}
 
 
 def clip_counts() -> pd.DataFrame:
