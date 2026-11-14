@@ -1,0 +1,16 @@
+{
+  "layer": 10,
+  "train_on": [
+    "clean",
+    "phone",
+    "aug1",
+    "aug2"
+  ],
+  "alarm_level_from": [
+    "clean",
+    "phone",
+    "noisy",
+    "gated"
+  ],
+  "why": "Chosen on dev data only (scripts/evaluate_dev_v3.py, results/dev_v3_recipes.csv), with my first 30 recordings now counted as dev data. Version 3 behaves the same with and without background noise: it catches 75-87% of Silero in all four listening conditions, where version 2 falls from 90-99% to 36-70% when noise is added. It also flags fewer real voices from the two datasets never trained on (English Dialects 7-12% instead of 17-22%). The cost is fewer Silero fakes caught in clean audio (86% and 77% instead of 99% and 90%). It still flags my first recordings too often (20% English, 40-60% Russian)."
+}
