@@ -1,0 +1,6 @@
+file,what,text,clip_id,score_clean,score_phone
+real.wav,a real person (FLEURS),"He did not set a figure for the cuts, saying they will be made based on China's economic output.",real_en_6917907748364342404,0.0,0.0
+piper.wav,AI voice: piper,"He did not set a figure for the cuts, saying they will be made based on China's economic output.",piper_en_1661_0,1.0,1.0
+kokoro.wav,AI voice: kokoro,"He did not set a figure for the cuts, saying they will be made based on China's economic output.",kokoro_en_1661_0,0.337,0.009
+chatterbox.wav,AI voice: chatterbox,"He did not set a figure for the cuts, saying they will be made based on China's economic output.",chatterbox_en_1661_0,0.395,0.419
+bark.wav,AI voice: bark,"He did not set a figure for the cuts, saying they will be made based on China's economic output.",bark_en_1661_0,0.964,0.854

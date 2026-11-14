@@ -152,3 +152,46 @@ def headline_chart(path=None, condition: str = "phone"):
     if path:
         fig.savefig(path, dpi=200, facecolor=SURFACE)
     return fig
+
+
+# ---------------------------------------------------------------- live tables
+# The functions below score a trained detector directly (used in the notebook),
+# instead of reading saved results.
+
+def _with_roles(clips: pd.DataFrame) -> pd.DataFrame:
+    who = [r.source if r.label == "real" else r.engine for r in clips.itertuples()]
+    role = [(REAL_SOURCE_ROLE if r.label == "real" else ENGINE_ROLE)[w]
+            for r, w in zip(clips.itertuples(), who)]
+    return clips.assign(who=[NICE.get(w, w) for w in who],
+                        met=["trained on" if x == "train" else "never trained on" for x in role])
+
+
+def flag_table(detector, features: dict, clips: pd.DataFrame, counts: bool = False) -> pd.DataFrame:
+    """% of clips flagged as AI, by generator or dataset, language and listening condition.
+
+    For fake clips this is "caught"; for real clips it is "wrongly flagged".
+    """
+    from .detect import report as score
+    table = score(detector, features, _with_roles(clips), ["label", "met", "who", "lang"])
+    table["cell"] = ([f"{s:.0%} ({k}/{n})" for s, k, n in zip(table["share"], table["flagged"], table["clips"])]
+                     if counts else [f"{s:.0%}" for s in table["share"]])
+    wide = table.pivot_table(index=["label", "met", "who"], columns=["lang", "condition"],
+                             values="cell", aggfunc="first", sort=False).fillna("")
+    return wide.sort_index(level=["label", "met"], ascending=[False, False], sort_remaining=False)
+
+
+def compare(methods: dict, features: dict, clips: pd.DataFrame, condition: str = "phone") -> pd.DataFrame:
+    """One row per method: AI voices caught and real people wrongly flagged, new and known."""
+    from .detect import report as score
+    rows = []
+    for name, detector in methods.items():
+        table = score(detector, features, _with_roles(clips), ["label", "met"], conditions=(condition,))
+        row = {"Method": name}
+        for label, met, title in [("fake", "never trained on", "AI voices caught: new generators"),
+                                  ("real", "never trained on", "Real people flagged: new datasets"),
+                                  ("fake", "trained on", "AI voices caught: known generators"),
+                                  ("real", "trained on", "Real people flagged: known datasets")]:
+            part = table[(table["label"] == label) & (table["met"] == met)].iloc[0]
+            row[title] = f"{part['share']:.0%} ({int(part['flagged'])} of {int(part['clips'])})"
+        rows.append(row)
+    return pd.DataFrame(rows).set_index("Method")
