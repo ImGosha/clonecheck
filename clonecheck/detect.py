@@ -29,13 +29,22 @@ def load_clips() -> pd.DataFrame:
     return pd.read_csv(MANIFEST, keep_default_na=False)
 
 
-def load_features() -> dict:
-    """{condition: {"ids", "mfcc", "xlsr"}} for the clips that have been processed."""
+def load_features(layers: list[int] | None = None) -> dict:
+    """{condition: {"index", "mfcc", "xlsr"}} for the clips that have been processed.
+
+    The features are stored in several files (one per processing run); this
+    joins them. Pass `layers` to keep only some XLS-R layers and save memory.
+    """
     out = {}
     for name in CONDITIONS:
-        saved = np.load(FEATURES / f"{name}.npz", allow_pickle=False)
-        out[name] = {"index": {c: i for i, c in enumerate(saved["ids"])},
-                     "mfcc": saved["mfcc"], "xlsr": saved["xlsr"]}
+        ids, mfcc, xlsr = [], [], []
+        for file in sorted(FEATURES.glob(f"{name}*.npz")):
+            saved = np.load(file, allow_pickle=False)
+            ids.extend(saved["ids"])
+            mfcc.append(saved["mfcc"])
+            xlsr.append(saved["xlsr"] if layers is None else saved["xlsr"][:, layers, :])
+        out[name] = {"index": {c: i for i, c in enumerate(ids)}, "mfcc": np.concatenate(mfcc),
+                     "xlsr": np.concatenate(xlsr), "layers": layers}
     return out
 
 
@@ -45,7 +54,8 @@ def matrix(features: dict, clips: pd.DataFrame, condition: str, kind: str, layer
     rows = [store["index"][c] for c in clips["clip_id"]]
     data = store[kind][rows]
     if kind == "xlsr":
-        data = data[:, layer, :]
+        kept = store["layers"]
+        data = data[:, layer if kept is None else kept.index(layer), :]
     return data.astype(np.float32)
 
 

@@ -13,9 +13,10 @@ Fake speech (the same kind of sentences, spoken by AI voice generators):
     every other generator              -> never trained on and never used to choose
                                           anything; only scored at the end (test)
 
-Real speech from other sources (LibriSpeech, Golos), added by
-scripts/add_real_sources.py: their test parts are test-only; their
-validation parts are dev.
+Real speech from other sources is added by scripts/add_real_sources.py.
+Real sources are split the same way as generators (see REAL_SOURCE_ROLE):
+some the detector learns from, some only for choosing settings, and some
+that are never seen until the final test.
 
 A sentence is never shared between train, dev and test, so the detector
 cannot pass by remembering words.
@@ -40,9 +41,22 @@ LANGS = {"en": "en_us", "ru": "ru_ru"}
 ENGINE_ROLE = {
     "say": "train", "piper": "train", "mms": "train",
     "silero": "dev",
-    "kokoro": "test", "bark": "test", "chatterbox": "test",
+    "kokoro": "test", "bark": "test", "chatterbox": "test", "vosk": "test",
 }
 TRAIN_ENGINES = [e for e, r in ENGINE_ROLE.items() if r == "train"]
+
+# role of each source of real speech
+#   train: its train part is used for training, its dev part for choosing
+#          settings and its test part for the final test (different speakers)
+#   dev:   never trained on; only used to choose settings
+#   test:  never trained on and never used to choose anything
+REAL_SOURCE_ROLE = {
+    "fleurs": "train", "librispeech": "train", "voxpopuli": "train",   # English (FLEURS: both)
+    "golos": "train", "rulibrispeech": "train",                        # Russian
+    "dialects": "dev", "sova": "dev",
+    "minds": "test", "ami": "test", "podlodka": "test", "own": "test",
+}
+TRAIN_SOURCES = [s for s, r in REAL_SOURCE_ROLE.items() if r == "train"]
 
 # listening conditions every clip is tested under
 CONDITIONS = ["clean", "phone"]

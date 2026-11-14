@@ -6,9 +6,11 @@ be stopped and restarted.
 
 Run:  python scripts/generate.py            (all generators)
       python scripts/generate.py piper mms  (only some)
+      SHARD=0/2 python scripts/generate.py say   (half the clips; run SHARD=1/2 alongside)
 """
 from __future__ import annotations
 
+import os
 import sys
 import time
 import warnings
@@ -31,6 +33,8 @@ def main() -> None:
     for engine in engines:
         todo = fake[(fake["engine"] == engine)]
         todo = todo[[not (ROOT / p).exists() for p in todo["path"]]]
+        shard, shards = (int(x) for x in os.environ.get("SHARD", "0/1").split("/"))
+        todo = todo.iloc[shard::shards]
         print(f"{engine}: {len(todo)} clips to make", flush=True)
         started, failed = time.time(), 0
         for n, r in enumerate(todo.itertuples(), 1):

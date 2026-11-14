@@ -57,7 +57,7 @@ def main() -> None:
             rows.append({"clip_id": f"real_{lang}_{Path(r.file).stem}", "path": r.path,
                          "label": "real", "lang": lang, "source": "fleurs", "engine": "",
                          "voice": "", "split": r.split, "sentence_id": r.sentence_id,
-                         "gender": r.gender.lower(), "text": r.text})
+                         "gender": r.gender.lower(), "text": r.text, "text_source": "fleurs"})
 
         # ---------------------------------------------------------- fake speech
         sentences = real.drop_duplicates("sentence_id").sort_values("sentence_id")
@@ -87,7 +87,8 @@ def main() -> None:
                                      "path": str((AUDIO / "fake" / engine / lang / f"{clip_id}.wav").relative_to(ROOT)),
                                      "label": "fake", "lang": lang, "source": "generated",
                                      "engine": engine, "voice": voice, "split": split,
-                                     "sentence_id": r.sentence_id, "gender": "", "text": r.text})
+                                     "sentence_id": r.sentence_id, "gender": "", "text": r.text,
+                                     "text_source": "fleurs"})
 
     clips = pd.DataFrame(rows)
     assert clips["clip_id"].is_unique
