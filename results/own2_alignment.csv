@@ -1,31 +1,31 @@
 id,lang,match,start,end,heard
 en_01,en,1.0,0.48,5.140000000000001,hi grandma its me can you hear me okay
-en_02,en,0.97,6.119999999999999,8.96,in a bit of trouble and i need your help right now
+en_02,en,1.0,5.9399999999999995,8.96,im in a bit of trouble and i need your help right now
 en_03,en,1.0,8.98,12.780000000000001,please dont tell mom and dad i dont want them to worry
-en_04,en,0.98,13.98,17.66,had a car accident and i need money to fix it today
+en_04,en,1.0,13.3,17.66,i had a car accident and i need money to fix it today
 en_05,en,0.79,17.94,21.82,can you send 2 000 i will pay you back next week
 en_06,en,0.97,21.84,26.66,practice starts at 6 tomorrow morning so we have to leave early
-en_07,en,0.98,27.32,30.38,finished my homework and now im going to the rink
+en_07,en,1.0,27.14,30.38,i finished my homework and now im going to the rink
 en_08,en,1.0,30.7,34.26,the weather in milwaukee was cold and windy all weekend
 en_09,en,0.88,34.5,37.56,we won the game on saturday 3 goals to 1
 en_10,en,1.0,37.58,40.66,could you pick me up after school at half past three
-en_11,en,0.98,41.46,44.0,left my phone charger at your house last night
+en_11,en,1.0,40.94,44.0,i left my phone charger at your house last night
 en_12,en,1.0,44.32,47.76,the bus was late again so i walked the whole way home
 en_13,en,1.0,47.78,51.32,lets have dinner together on sunday ill bring dessert
-en_14,en,0.97,52.38,55.34,new phone number is different please save this one
+en_14,en,1.0,51.68,55.34,my new phone number is different please save this one
 en_15,en,1.0,55.66,59.4,thank you so much i love you talk to you soon
 ru_01,ru,0.96,60.58,64.32,привет баба это я ты меня хорошо слышишь
-ru_02,ru,0.97,71.76,75.94000000000001,меня небольшие неприятности и мне срочно нужно твоя помощь
+ru_02,ru,0.98,70.76,75.94000000000001,у меня небольшие неприятности и мне срочно нужно твоя помощь
 ru_03,ru,1.0,76.04,80.28,пожалуйста не говори маме и папе я не хочу чтобы они волновались
-ru_04,ru,0.98,80.68,84.78,меня случилась авария и сегодня нужны деньги на ремонт машины
-ru_05,ru,0.95,85.32,90.24,можешь перевести 2 тысячи долларов я верну на следующей неделе
+ru_04,ru,1.0,80.52000000000001,84.78,у меня случилась авария и сегодня нужны деньги на ремонт машины
+ru_05,ru,0.97,84.8,90.24,ты можешь перевести 2 тысячи долларов я верну на следующей неделе
 ru_06,ru,0.96,90.38,95.97999999999999,тренировка начинается завтра в 6 утра поэтому нам нужно выехать пораньше
 ru_07,ru,1.0,96.16,98.96,уроки сделаны и теперь я иду на каток
-ru_08,ru,0.92,99.74000000000001,102.82000000000001,милоке все выходные было холодно и ветерно
-ru_09,ru,0.87,106.72,109.7,субботу мы выиграли матч со счетом 3 1
+ru_08,ru,0.94,98.98,102.82000000000001,в милоке все выходные было холодно и ветерно
+ru_09,ru,0.89,106.02,109.7,в субботу мы выиграли матч со счетом 3 1
 ru_10,ru,0.97,114.52000000000001,117.98,можешь забрать меня после школы в половине четвертого
 ru_11,ru,0.97,118.0,122.22,вчера вечером моя зарядка телефона осталась у тебя дома
 ru_12,ru,1.0,122.24,126.83999999999999,автобус снова опоздал поэтому домой пришлось идти пешком
 ru_13,ru,1.0,128.3,132.88000000000002,давай поужинаем вместе в воскресенье я принесу десерт
-ru_14,ru,0.98,133.44,138.20000000000002,меня теперь другой номер телефона сохрани пожалуйста этот
+ru_14,ru,1.0,132.9,138.20000000000002,у меня теперь другой номер телефона сохрани пожалуйста этот
 ru_15,ru,1.0,144.48,148.79999999999998,большое спасибо я тебя люблю скоро созвонимся

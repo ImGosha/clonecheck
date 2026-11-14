@@ -127,9 +127,13 @@ def find_sentences(words: list[dict], sentences: pd.DataFrame) -> pd.DataFrame:
                 if len(stretch) == n and all(w["lang"] == r.lang for w in stretch):
                     said = " ".join(w["word"] for w in stretch)
                     options.append((difflib.SequenceMatcher(None, target, said).ratio(), i, n))
-        best = max(o[0] for o in options)
-        # among stretches that match about as well as the best one, take the last take
-        match, i, n = max((o for o in options if o[0] >= best - 0.03), key=lambda o: (o[1], o[0]))
+        match, i, n = max(options)
+        # a retake: a stretch that starts over a second later and matches about as well
+        retakes = [o for o in options if o[0] >= match - 0.03
+                   and words[o[1]]["start"] > words[i]["start"] + 1.0]
+        if retakes:
+            last = max(words[o[1]]["start"] for o in retakes)
+            match, i, n = max(o for o in retakes if words[o[1]]["start"] > last - 1.0)
         stretch = words[i:i + n]
         rows.append({"id": r.id, "lang": r.lang, "match": round(match, 2),
                      "start": stretch[0]["start"], "end": stretch[-1]["end"],
