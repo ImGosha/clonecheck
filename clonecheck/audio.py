@@ -87,10 +87,70 @@ def add_noise(wave: np.ndarray, snr_db: float, rng: np.random.Generator) -> np.n
     return set_loudness((wave + pink).astype(np.float32))
 
 
-def condition(wave: np.ndarray, name: str) -> np.ndarray:
-    """Apply one listening condition to a prepared clip."""
+def noise_gate(wave: np.ndarray, depth_db: float = 40.0) -> np.ndarray:
+    """Imitate the noise suppression in browsers and phones: silence every quiet moment.
+
+    Anything more than `depth_db` below the loudest part of the clip is set to
+    exact digital silence, which is what my own browser recordings looked like.
+    """
+    frame = RATE // 100  # 10 ms
+    n = len(wave) // frame
+    if n < 3:
+        return wave
+    level = 10 * np.log10((wave[: n * frame].reshape(n, frame) ** 2).mean(axis=1) + 1e-12)
+    keep = (level > level.max() - depth_db).astype(np.float32)
+    keep = np.convolve(keep, np.ones(3) / 3, mode="same")          # soften the edges
+    gain = np.repeat(keep, frame)
+    out = wave.copy()
+    out[: n * frame] *= gain
+    return set_loudness(out)
+
+
+def reverb(wave: np.ndarray, seconds: float, wet: float, rng: np.random.Generator) -> np.ndarray:
+    """Add the echo of a room: the clip plus a decaying, blurred copy of itself."""
+    from scipy.signal import fftconvolve
+    n = int(seconds * RATE)
+    tail = rng.standard_normal(n) * np.exp(-6.9 * np.arange(n) / n)
+    tail /= np.sqrt((tail ** 2).sum())
+    echo = fftconvolve(wave, tail)[: len(wave)]
+    return set_loudness((wave + wet * echo).astype(np.float32))
+
+
+def random_recording(wave: np.ndarray, rng: np.random.Generator) -> np.ndarray:
+    """A random mix of the things that happen to real recordings (used for training only).
+
+    Applied to real and fake clips alike, so that a detector cannot use "is
+    there background noise?" or "is it suspiciously clean?" to tell them apart.
+    """
+    if rng.random() < 0.4:
+        wave = reverb(wave, rng.uniform(0.15, 0.7), rng.uniform(0.2, 0.6), rng)
+    choice = rng.random()
+    if choice < 0.55:
+        wave = add_noise(wave, rng.uniform(5, 30), rng)
+    elif choice < 0.8:
+        wave = noise_gate(wave, rng.uniform(30, 45))
+    if rng.random() < 0.5:
+        wave = phone_line(wave)
+    return wave
+
+
+def condition(wave: np.ndarray, name: str, clip_id: str = "") -> np.ndarray:
+    """Apply one listening condition to a prepared clip.
+
+    clean   as recorded                phone   simulated phone line
+    noisy   background hiss at 20 dB   gated   noise suppression (quiet moments silenced)
+    aug1, aug2   two different random mixes of all of these (training only)
+    """
+    import zlib
+    rng = np.random.default_rng(zlib.crc32(f"{clip_id}|{name}".encode()))
     if name == "clean":
         return wave
     if name == "phone":
         return phone_line(wave)
+    if name == "noisy":
+        return add_noise(wave, 20.0, rng)
+    if name == "gated":
+        return noise_gate(wave)
+    if name.startswith("aug"):
+        return random_recording(wave, rng)
     raise ValueError(name)

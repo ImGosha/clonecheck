@@ -56,20 +56,19 @@ def test_results() -> pd.DataFrame:
     return pd.read_csv(RESULTS / "test_results.csv")
 
 
-def summary() -> pd.DataFrame:
+def summary(condition: str = "phone") -> pd.DataFrame:
     """One row per method: fakes caught and real voices wrongly flagged, seen and never seen."""
     table = test_results()
-    table = table[table["who"] == "ALL"]
+    table = table[(table["who"] == "ALL") & (table["condition"] == condition)]
     rows = []
     for method, group in table.groupby("method", sort=False):
         row = {"Method": METHOD_NAMES.get(method, method)}
-        for label, seen, title in [("fake", "seen in training", "Fakes caught: known generators"),
-                                   ("fake", "never seen", "Fakes caught: new generators"),
-                                   ("real", "seen in training", "Real voices flagged: known datasets"),
-                                   ("real", "never seen", "Real voices flagged: new datasets")]:
-            part = group[(group["label"] == label) & (group["seen"] == seen)]
-            k, n = int(part["flagged"].sum()), int(part["clips"].sum())
-            row[title] = f"{k / n:.0%} ({k}/{n})"
+        for label, seen, title in [("fake", "never seen", "AI voices caught: new generators"),
+                                   ("real", "never seen", "Real people flagged: new datasets"),
+                                   ("fake", "seen in training", "AI voices caught: known generators"),
+                                   ("real", "seen in training", "Real people flagged: known datasets")]:
+            part = group[(group["label"] == label) & (group["seen"] == seen)].iloc[0]
+            row[title] = f"{part['share']:.0%} ({int(part['flagged'])} of {int(part['clips'])})"
         rows.append(row)
     return pd.DataFrame(rows).set_index("Method")
 
@@ -121,8 +120,8 @@ def headline_chart(path=None, condition: str = "phone"):
     table = test_results()
     table = table[(table["who"] == "ALL") & (table["seen"] == "never seen")
                   & (table["condition"] == condition)]
-    methods = [m for m in METHOD_NAMES if m in set(table["method"])]
-    fig, axes = plt.subplots(1, 2, figsize=(9.6, 2.9), sharey=True)
+    methods = [m for m in reversed(list(METHOD_NAMES)) if m in set(table["method"])]  # CloneCheck on top
+    fig, axes = plt.subplots(1, 2, figsize=(9.6, 2.7), sharey=True)
     fig.patch.set_facecolor(SURFACE)
     panels = [("fake", "AI voices caught", "higher is better"),
               ("real", "Real people wrongly flagged", "lower is better")]
@@ -141,7 +140,7 @@ def headline_chart(path=None, condition: str = "phone"):
         ax.set_xticklabels(["0%", "25%", "50%", "75%", "100%"], fontsize=9, color=MUTED)
         ax.set_yticks(range(len(methods)))
         ax.set_yticklabels([METHOD_NAMES[m] for m in methods], fontsize=10, color=INK)
-        ax.invert_yaxis()
+        ax.set_ylim(len(methods) - 0.5, -0.5)
         ax.grid(axis="x", color=GRID, linewidth=0.8)
         ax.set_axisbelow(True)
         ax.tick_params(length=0)
@@ -149,7 +148,7 @@ def headline_chart(path=None, condition: str = "phone"):
             ax.spines[side].set_visible(False)
     fig.suptitle("Voices and voice generators the detector never met in training, heard through a phone line",
                  x=0.012, ha="left", fontsize=12, color=INK, fontweight="bold")
-    fig.tight_layout(rect=(0, 0, 1, 0.93))
+    fig.tight_layout(rect=(0, 0, 1, 0.97))
     if path:
         fig.savefig(path, dpi=200, facecolor=SURFACE)
     return fig

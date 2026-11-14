@@ -33,7 +33,7 @@ def main() -> None:
             mfcc.append(saved["mfcc"][keep])
             xlsr.append(saved["xlsr"][keep][:, layer, :])
         out = FEATURES_SLIM / f"{name}.npz"
-        np.savez_compressed(out, ids=np.array(ids), mfcc=np.concatenate(mfcc).astype(np.float16),
+        np.savez_compressed(out, ids=np.array(ids), mfcc=np.concatenate(mfcc).astype(np.float32),
                             xlsr=np.concatenate(xlsr).astype(np.float16), layer=layer)
         print(f"{out.name}: {len(ids)} clips, {out.stat().st_size / 1e6:.0f} MB")
 

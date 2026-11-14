@@ -29,7 +29,7 @@ def load_clips() -> pd.DataFrame:
     return pd.read_csv(MANIFEST, keep_default_na=False)
 
 
-def load_features(layers: list[int] | None = None) -> dict:
+def load_features(layers: list[int] | None = None, conditions: list[str] | None = None) -> dict:
     """{condition: {"index", "mfcc", "xlsr"}} for the clips that have been processed.
 
     The full features (all 25 XLS-R layers) are stored in several files, one
@@ -38,8 +38,8 @@ def load_features(layers: list[int] | None = None) -> dict:
     the repository), the slim copy with only the chosen layer is used.
     """
     out = {}
-    for name in CONDITIONS:
-        files = sorted(FEATURES.glob(f"{name}*.npz"))
+    for name in conditions or CONDITIONS:
+        files = sorted(FEATURES.glob(f"{name}.*.npz")) + sorted(FEATURES.glob(f"{name}.npz"))
         if not files:
             saved = np.load(FEATURES_SLIM / f"{name}.npz", allow_pickle=False)
             out[name] = {"index": {c: i for i, c in enumerate(saved["ids"])},
