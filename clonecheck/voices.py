@@ -47,6 +47,7 @@ VOICES = {
     # Chatterbox needs older libraries, so it runs from its own environment
     # (scripts/generate_chatterbox.py), not through speak() below.
     "chatterbox": {"en": ["default"], "ru": ["default"]},
+    "chatterbox_clone": {"en": [], "ru": []},   # added by scripts/own_voice.py, not from the sentence lists
 }
 
 

@@ -7,11 +7,13 @@ project, so it has its own environment:
     uv pip install --python .venv-chatterbox/bin/python chatterbox-tts "setuptools<81" pandas soundfile scipy
     .venv-chatterbox/bin/python scripts/generate_chatterbox.py
 
-With --clone REFERENCE.wav OUT_DIR it instead reads data/own_sentences.csv in
-the voice of the reference recording (used for the "clone of my own voice" test).
+With --clone OUT_DIR it instead reads data/own_sentences.csv in a copy of my
+own voice, using data/audio/own/_reference_<lang>.wav as the voice to copy
+(used for the "clone of my own voice" test; see scripts/own_voice.py).
 """
 from __future__ import annotations
 
+import os
 import sys
 import time
 import warnings
@@ -53,14 +55,16 @@ def speak(text: str, lang: str, reference: str | None = None) -> np.ndarray:
 
 def main() -> None:
     if len(sys.argv) > 1 and sys.argv[1] == "--clone":
-        reference, out_dir = sys.argv[2], Path(sys.argv[3])
-        jobs = [(r.lang, r.text, out_dir / f"{r.id}.wav", reference)
+        out_dir = Path(sys.argv[2])
+        own = ROOT / "data" / "audio" / "own"
+        jobs = [(r.lang, r.text, out_dir / f"{r.id}.wav", str(own / f"_reference_{r.lang}.wav"))
                 for r in pd.read_csv(ROOT / "data" / "own_sentences.csv").itertuples()]
     else:
         clips = pd.read_csv(ROOT / "data" / "clips.csv", keep_default_na=False)
         jobs = [(r.lang, r.text, ROOT / r.path, None)
                 for r in clips[clips["engine"] == "chatterbox"].itertuples()]
-    jobs = [j for j in jobs if not j[2].exists()]
+    only = os.environ.get("ONLY", "")          # e.g. ONLY=minds to make just those clips
+    jobs = [j for j in jobs if not j[2].exists() and only in j[2].name]
     print(f"chatterbox: {len(jobs)} clips to make", flush=True)
     started = time.time()
     for n, (lang, text, out, reference) in enumerate(jobs, 1):

@@ -20,7 +20,7 @@ from sklearn.metrics import roc_auc_score
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
-from .config import CONDITIONS, FEATURES, MANIFEST
+from .config import CONDITIONS, FEATURES, FEATURES_SLIM, MANIFEST
 
 MAX_FALSE_ALARMS = 0.05   # the alarm level is set so at most 5% of real dev clips are flagged
 
@@ -32,13 +32,22 @@ def load_clips() -> pd.DataFrame:
 def load_features(layers: list[int] | None = None) -> dict:
     """{condition: {"index", "mfcc", "xlsr"}} for the clips that have been processed.
 
-    The features are stored in several files (one per processing run); this
-    joins them. Pass `layers` to keep only some XLS-R layers and save memory.
+    The full features (all 25 XLS-R layers) are stored in several files, one
+    per processing run; this joins them. Pass `layers` to keep only some
+    layers and save memory. If the full files are not there (a fresh copy of
+    the repository), the slim copy with only the chosen layer is used.
     """
     out = {}
     for name in CONDITIONS:
+        files = sorted(FEATURES.glob(f"{name}*.npz"))
+        if not files:
+            saved = np.load(FEATURES_SLIM / f"{name}.npz", allow_pickle=False)
+            out[name] = {"index": {c: i for i, c in enumerate(saved["ids"])},
+                         "mfcc": saved["mfcc"].astype(np.float32),
+                         "xlsr": saved["xlsr"][:, None, :], "layers": [int(saved["layer"])]}
+            continue
         ids, mfcc, xlsr = [], [], []
-        for file in sorted(FEATURES.glob(f"{name}*.npz")):
+        for file in files:
             saved = np.load(file, allow_pickle=False)
             ids.extend(saved["ids"])
             mfcc.append(saved["mfcc"])

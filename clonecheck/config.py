@@ -27,7 +27,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RAW = DATA / "raw"
 AUDIO = DATA / "audio"
-FEATURES = DATA / "features"
+FEATURES = DATA / "features"            # all 25 XLS-R layers (large, not on GitHub)
+FEATURES_SLIM = DATA / "features_slim"  # the chosen layer only (on GitHub)
 RESULTS = ROOT / "results"
 MANIFEST = DATA / "clips.csv"
 
@@ -42,6 +43,7 @@ ENGINE_ROLE = {
     "say": "train", "piper": "train", "mms": "train",
     "silero": "dev",
     "kokoro": "test", "bark": "test", "chatterbox": "test", "vosk": "test",
+    "chatterbox_clone": "test",   # Chatterbox copying my own voice (scripts/own_voice.py)
 }
 TRAIN_ENGINES = [e for e, r in ENGINE_ROLE.items() if r == "train"]
 

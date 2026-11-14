@@ -3,9 +3,11 @@
 Run:  python record.py     then open the local address it prints.
 
 The page shows one sentence at a time. Press the microphone, read the
-sentence in your normal voice, stop, and press "Save and next". Recordings
-are saved in data/audio/own/ and stay on this computer (that folder is not
-uploaded to GitHub).
+sentence in your normal voice, stop, and press "Save and next". (If the
+page cannot find a microphone, open the same address in Chrome or Safari,
+or record with any app and upload the file.) Recordings are saved in
+data/audio/own/ and stay on this computer (that folder is not uploaded to
+GitHub).
 """
 from __future__ import annotations
 
@@ -52,7 +54,7 @@ with gr.Blocks(title="CloneCheck recorder") as page:
     index = gr.State(0)
     sentence = gr.Markdown()
     status = gr.Markdown()
-    mic = gr.Audio(sources=["microphone"], type="filepath", label="Your recording")
+    mic = gr.Audio(sources=["microphone", "upload"], type="filepath", label="Your recording")
     with gr.Row():
         back = gr.Button("Back")
         keep = gr.Button("Save and next", variant="primary")
