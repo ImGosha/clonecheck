@@ -1,0 +1,241 @@
+label,seen,who,lang,condition,clips,flagged,share,low,high,method
+real,seen in training,fleurs,en,clean,325,0,0.0,0.0,0.011682220254371706,always real
+fake,seen in training,say,en,clean,365,0,0.0,0.0,0.010415311071202379,always real
+fake,seen in training,piper,en,clean,365,0,0.0,0.0,0.010415311071202379,always real
+fake,seen in training,mms,en,clean,365,0,0.0,0.0,0.010415311071202379,always real
+fake,never seen,kokoro,en,clean,365,0,0.0,0.0,0.010415311071202379,always real
+fake,never seen,bark,en,clean,105,0,0.0,0.0,0.035295328256842964,always real
+fake,never seen,chatterbox,en,clean,90,0,0.0,0.0,0.04093706842168078,always real
+real,seen in training,fleurs,ru,clean,388,0,0.0,0.0,0.00980396160081012,always real
+fake,seen in training,say,ru,clean,315,0,0.0,0.0,0.012048615989883377,always real
+fake,seen in training,piper,ru,clean,315,0,0.0,0.0,0.012048615989883377,always real
+fake,seen in training,mms,ru,clean,315,0,0.0,0.0,0.012048615989883377,always real
+fake,never seen,bark,ru,clean,95,0,0.0,0.0,0.038866226366226365,always real
+fake,never seen,chatterbox,ru,clean,90,0,0.0,0.0,0.04093706842168078,always real
+fake,never seen,vosk,ru,clean,315,0,0.0,0.0,0.012048615989883377,always real
+real,seen in training,librispeech,en,clean,300,0,0.0,0.0,0.012643429997735661,always real
+real,seen in training,golos,ru,clean,300,0,0.0,0.0,0.012643429997735661,always real
+real,seen in training,voxpopuli,en,clean,200,0,0.0,0.0,0.018846005918320894,always real
+real,seen in training,rulibrispeech,ru,clean,200,0,0.0,0.0,0.018846005918320894,always real
+real,never seen,minds,en,clean,200,0,0.0,0.0,0.018846005918320894,always real
+real,never seen,minds,ru,clean,200,0,0.0,0.0,0.018846005918320894,always real
+real,never seen,ami,en,clean,100,0,0.0,0.0,0.03699480747600191,always real
+real,never seen,podlodka,ru,clean,50,0,0.0,0.0,0.07135003417431873,always real
+real,never seen,own,en,clean,15,0,0.0,0.0,0.20388926630434784,always real
+fake,never seen,chatterbox_clone,en,clean,15,0,0.0,0.0,0.20388926630434784,always real
+real,never seen,own,ru,clean,15,0,0.0,0.0,0.20388926630434784,always real
+fake,never seen,chatterbox_clone,ru,clean,15,0,0.0,0.0,0.20388926630434784,always real
+real,seen in training,fleurs,en,phone,325,0,0.0,0.0,0.011682220254371706,always real
+fake,seen in training,say,en,phone,365,0,0.0,0.0,0.010415311071202379,always real
+fake,seen in training,piper,en,phone,365,0,0.0,0.0,0.010415311071202379,always real
+fake,seen in training,mms,en,phone,365,0,0.0,0.0,0.010415311071202379,always real
+fake,never seen,kokoro,en,phone,365,0,0.0,0.0,0.010415311071202379,always real
+fake,never seen,bark,en,phone,105,0,0.0,0.0,0.035295328256842964,always real
+fake,never seen,chatterbox,en,phone,90,0,0.0,0.0,0.04093706842168078,always real
+real,seen in training,fleurs,ru,phone,388,0,0.0,0.0,0.00980396160081012,always real
+fake,seen in training,say,ru,phone,315,0,0.0,0.0,0.012048615989883377,always real
+fake,seen in training,piper,ru,phone,315,0,0.0,0.0,0.012048615989883377,always real
+fake,seen in training,mms,ru,phone,315,0,0.0,0.0,0.012048615989883377,always real
+fake,never seen,bark,ru,phone,95,0,0.0,0.0,0.038866226366226365,always real
+fake,never seen,chatterbox,ru,phone,90,0,0.0,0.0,0.04093706842168078,always real
+fake,never seen,vosk,ru,phone,315,0,0.0,0.0,0.012048615989883377,always real
+real,seen in training,librispeech,en,phone,300,0,0.0,0.0,0.012643429997735661,always real
+real,seen in training,golos,ru,phone,300,0,0.0,0.0,0.012643429997735661,always real
+real,seen in training,voxpopuli,en,phone,200,0,0.0,0.0,0.018846005918320894,always real
+real,seen in training,rulibrispeech,ru,phone,200,0,0.0,0.0,0.018846005918320894,always real
+real,never seen,minds,en,phone,200,0,0.0,0.0,0.018846005918320894,always real
+real,never seen,minds,ru,phone,200,0,0.0,0.0,0.018846005918320894,always real
+real,never seen,ami,en,phone,100,0,0.0,0.0,0.03699480747600191,always real
+real,never seen,podlodka,ru,phone,50,0,0.0,0.0,0.07135003417431873,always real
+real,never seen,own,en,phone,15,0,0.0,0.0,0.20388926630434784,always real
+fake,never seen,chatterbox_clone,en,phone,15,0,0.0,0.0,0.20388926630434784,always real
+real,never seen,own,ru,phone,15,0,0.0,0.0,0.20388926630434784,always real
+fake,never seen,chatterbox_clone,ru,phone,15,0,0.0,0.0,0.20388926630434784,always real
+real,seen in training,ALL,all,clean,1713,0,0.0,0.0,0.0022375972250439405,always real
+fake,seen in training,ALL,all,clean,2040,0,0.0,0.0,0.0018795977144217045,always real
+fake,never seen,ALL,all,clean,1090,0,0.0,0.0,0.003512025872850328,always real
+real,never seen,ALL,all,clean,580,0,0.0,0.0,0.006579866867999813,always real
+real,seen in training,ALL,all,phone,1713,0,0.0,0.0,0.0022375972250439405,always real
+fake,seen in training,ALL,all,phone,2040,0,0.0,0.0,0.0018795977144217045,always real
+fake,never seen,ALL,all,phone,1090,0,0.0,0.0,0.003512025872850328,always real
+real,never seen,ALL,all,phone,580,0,0.0,0.0,0.006579866867999813,always real
+real,seen in training,fleurs,en,clean,325,0,0.0,0.0,0.011682220254371706,"mfcc, many + phone"
+fake,seen in training,say,en,clean,365,327,0.8958904109589041,0.8603275281733325,0.9232066501839893,"mfcc, many + phone"
+fake,seen in training,piper,en,clean,365,328,0.8986301369863013,0.8633975721536755,0.9255589880607904,"mfcc, many + phone"
+fake,seen in training,mms,en,clean,365,306,0.8383561643835616,0.7970981273665638,0.872566031990732,"mfcc, many + phone"
+fake,never seen,kokoro,en,clean,365,121,0.3315068493150685,0.28518663546460615,0.3813368803210319,"mfcc, many + phone"
+fake,never seen,bark,en,clean,105,33,0.3142857142857143,0.23337931576898624,0.40830180615498396,"mfcc, many + phone"
+fake,never seen,chatterbox,en,clean,90,87,0.9666666666666667,0.9065255864388708,0.9885998163675604,"mfcc, many + phone"
+real,seen in training,fleurs,ru,clean,388,2,0.005154639175257732,0.0014146984018567291,0.018597469780388336,"mfcc, many + phone"
+fake,seen in training,say,ru,clean,315,310,0.9841269841269841,0.9633863157889009,0.9932015322208945,"mfcc, many + phone"
+fake,seen in training,piper,ru,clean,315,223,0.707936507936508,0.6554563908932993,0.755405930710908,"mfcc, many + phone"
+fake,seen in training,mms,ru,clean,315,299,0.9492063492063492,0.9190917880267253,0.9684962807823636,"mfcc, many + phone"
+fake,never seen,bark,ru,clean,95,34,0.35789473684210527,0.2687489341134812,0.45808673022218316,"mfcc, many + phone"
+fake,never seen,chatterbox,ru,clean,90,40,0.4444444444444444,0.3461548633017185,0.5472825887451348,"mfcc, many + phone"
+fake,never seen,vosk,ru,clean,315,98,0.3111111111111111,0.26251996982538495,0.3642539517707932,"mfcc, many + phone"
+real,seen in training,librispeech,en,clean,300,35,0.11666666666666667,0.08509263799927805,0.15793399166565264,"mfcc, many + phone"
+real,seen in training,golos,ru,clean,300,16,0.05333333333333334,0.03309162538404202,0.08486983874726851,"mfcc, many + phone"
+real,seen in training,voxpopuli,en,clean,200,9,0.045,0.023852271724704166,0.08329759366096785,"mfcc, many + phone"
+real,seen in training,rulibrispeech,ru,clean,200,17,0.085,0.05374529946985246,0.13189688544235392,"mfcc, many + phone"
+real,never seen,minds,en,clean,200,85,0.425,0.35853495209243025,0.4942919487953179,"mfcc, many + phone"
+real,never seen,minds,ru,clean,200,72,0.36,0.29669087731339805,0.42858600434373184,"mfcc, many + phone"
+real,never seen,ami,en,clean,100,0,0.0,0.0,0.03699480747600191,"mfcc, many + phone"
+real,never seen,podlodka,ru,clean,50,0,0.0,0.0,0.07135003417431873,"mfcc, many + phone"
+real,never seen,own,en,clean,15,6,0.4,0.19824228082594664,0.642535572434923,"mfcc, many + phone"
+fake,never seen,chatterbox_clone,en,clean,15,15,1.0,0.7961107336956521,1.0,"mfcc, many + phone"
+real,never seen,own,ru,clean,15,13,0.8666666666666667,0.6211750079348376,0.9626395301086407,"mfcc, many + phone"
+fake,never seen,chatterbox_clone,ru,clean,15,12,0.8,0.5481406466534955,0.9295257935638959,"mfcc, many + phone"
+real,seen in training,fleurs,en,phone,325,0,0.0,0.0,0.011682220254371706,"mfcc, many + phone"
+fake,seen in training,say,en,phone,365,279,0.7643835616438356,0.7182318380421164,0.8050280111722887,"mfcc, many + phone"
+fake,seen in training,piper,en,phone,365,245,0.6712328767123288,0.6214741868357215,0.7174246792357845,"mfcc, many + phone"
+fake,seen in training,mms,en,phone,365,282,0.7726027397260274,0.7268927168299855,0.8126342779558522,"mfcc, many + phone"
+fake,never seen,kokoro,en,phone,365,256,0.7013698630136986,0.6525190568794406,0.7460260096206506,"mfcc, many + phone"
+fake,never seen,bark,en,phone,105,28,0.26666666666666666,0.19141558416037008,0.35838890235948995,"mfcc, many + phone"
+fake,never seen,chatterbox,en,phone,90,90,1.0,0.9590629315783191,0.9999999999999999,"mfcc, many + phone"
+real,seen in training,fleurs,ru,phone,388,10,0.02577319587628866,0.014058418613664948,0.0467865758943199,"mfcc, many + phone"
+fake,seen in training,say,ru,phone,315,289,0.9174603174603174,0.8818085582749162,0.9430524385335304,"mfcc, many + phone"
+fake,seen in training,piper,ru,phone,315,105,0.3333333333333333,0.28355820805444015,0.38712466394218764,"mfcc, many + phone"
+fake,seen in training,mms,ru,phone,315,206,0.653968253968254,0.5998640517202252,0.7043622474828901,"mfcc, many + phone"
+fake,never seen,bark,ru,phone,95,16,0.16842105263157894,0.1064116433136824,0.2562049068028677,"mfcc, many + phone"
+fake,never seen,chatterbox,ru,phone,90,46,0.5111111111111111,0.40951565938168355,0.6117968502089457,"mfcc, many + phone"
+fake,never seen,vosk,ru,phone,315,119,0.37777777777777777,0.32601189397550867,0.43248887882201836,"mfcc, many + phone"
+real,seen in training,librispeech,en,phone,300,65,0.21666666666666667,0.173787117091094,0.2667108265742896,"mfcc, many + phone"
+real,seen in training,golos,ru,phone,300,23,0.07666666666666666,0.05162723750301175,0.11241086656173778,"mfcc, many + phone"
+real,seen in training,voxpopuli,en,phone,200,1,0.005,0.0008831459893662054,0.02777439986977148,"mfcc, many + phone"
+real,seen in training,rulibrispeech,ru,phone,200,19,0.095,0.06166261364986359,0.14360265114397636,"mfcc, many + phone"
+real,never seen,minds,en,phone,200,37,0.185,0.13730116322736063,0.2445718205011816,"mfcc, many + phone"
+real,never seen,minds,ru,phone,200,45,0.225,0.17262283786915622,0.28774246538592035,"mfcc, many + phone"
+real,never seen,ami,en,phone,100,5,0.05,0.02154336145631356,0.11175196527208817,"mfcc, many + phone"
+real,never seen,podlodka,ru,phone,50,1,0.02,0.0035391680889764604,0.10495686471836953,"mfcc, many + phone"
+real,never seen,own,en,phone,15,12,0.8,0.5481406466534955,0.9295257935638959,"mfcc, many + phone"
+fake,never seen,chatterbox_clone,en,phone,15,15,1.0,0.7961107336956521,1.0,"mfcc, many + phone"
+real,never seen,own,ru,phone,15,13,0.8666666666666667,0.6211750079348376,0.9626395301086407,"mfcc, many + phone"
+fake,never seen,chatterbox_clone,ru,phone,15,13,0.8666666666666667,0.6211750079348376,0.9626395301086407,"mfcc, many + phone"
+real,seen in training,ALL,all,clean,1713,79,0.04611792177466433,0.03716027654141982,0.057106777565377215,"mfcc, many + phone"
+fake,seen in training,ALL,all,clean,2040,1793,0.878921568627451,0.8640484473001259,0.8923702497261016,"mfcc, many + phone"
+fake,never seen,ALL,all,clean,1090,440,0.4036697247706422,0.3749300233740656,0.4330860550051074,"mfcc, many + phone"
+real,never seen,ALL,all,clean,580,176,0.30344827586206896,0.26742611999024246,0.3420570000889023,"mfcc, many + phone"
+real,seen in training,ALL,all,phone,1713,118,0.06888499708114419,0.05783093458336619,0.08186838304733426,"mfcc, many + phone"
+fake,seen in training,ALL,all,phone,2040,1406,0.6892156862745098,0.6687918662044587,0.7089282076016523,"mfcc, many + phone"
+fake,never seen,ALL,all,phone,1090,583,0.5348623853211009,0.5051806345969636,0.5642992608467641,"mfcc, many + phone"
+real,never seen,ALL,all,phone,580,113,0.19482758620689655,0.1646452954269946,0.22902586469588807,"mfcc, many + phone"
+real,seen in training,fleurs,en,clean,325,3,0.009230769230769232,0.003144106729421007,0.026783980227946914,"xlsr, one source"
+fake,seen in training,say,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,seen in training,piper,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,seen in training,mms,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,never seen,kokoro,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,never seen,bark,en,clean,105,88,0.8380952380952381,0.7559361291453497,0.8963879822238328,"xlsr, one source"
+fake,never seen,chatterbox,en,clean,90,90,1.0,0.9590629315783191,0.9999999999999999,"xlsr, one source"
+real,seen in training,fleurs,ru,clean,388,17,0.04381443298969072,0.02753265675387526,0.0690410607891319,"xlsr, one source"
+fake,seen in training,say,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+fake,seen in training,piper,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+fake,seen in training,mms,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+fake,never seen,bark,ru,clean,95,88,0.9263157894736842,0.8556415166933156,0.9638514902996915,"xlsr, one source"
+fake,never seen,chatterbox,ru,clean,90,81,0.9,0.8207564910060137,0.9464938542566417,"xlsr, one source"
+fake,never seen,vosk,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+real,seen in training,librispeech,en,clean,300,246,0.82,0.7725658602716683,0.8593423445297808,"xlsr, one source"
+real,seen in training,golos,ru,clean,300,76,0.25333333333333335,0.2074489707089529,0.3054551214232634,"xlsr, one source"
+real,seen in training,voxpopuli,en,clean,200,194,0.97,0.9361048802675267,0.9861798741692518,"xlsr, one source"
+real,seen in training,rulibrispeech,ru,clean,200,131,0.655,0.5867546071792236,0.7174031309860971,"xlsr, one source"
+real,never seen,minds,en,clean,200,82,0.41,0.34415559179081295,0.4792366892744849,"xlsr, one source"
+real,never seen,minds,ru,clean,200,88,0.44,0.3729770042058236,0.509284516504375,"xlsr, one source"
+real,never seen,ami,en,clean,100,26,0.26,0.18404578126986462,0.35371172631861636,"xlsr, one source"
+real,never seen,podlodka,ru,clean,50,28,0.56,0.4230578680014353,0.6883801278976466,"xlsr, one source"
+real,never seen,own,en,clean,15,14,0.9333333333333333,0.7018292244757601,0.9881334113938051,"xlsr, one source"
+fake,never seen,chatterbox_clone,en,clean,15,15,1.0,0.7961107336956521,1.0,"xlsr, one source"
+real,never seen,own,ru,clean,15,15,1.0,0.7961107336956521,1.0,"xlsr, one source"
+fake,never seen,chatterbox_clone,ru,clean,15,12,0.8,0.5481406466534955,0.9295257935638959,"xlsr, one source"
+real,seen in training,fleurs,en,phone,325,24,0.07384615384615385,0.050123259700832215,0.1075258941775092,"xlsr, one source"
+fake,seen in training,say,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,seen in training,piper,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,seen in training,mms,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,never seen,kokoro,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, one source"
+fake,never seen,bark,en,phone,105,87,0.8285714285714286,0.7452257441289754,0.8887230401593851,"xlsr, one source"
+fake,never seen,chatterbox,en,phone,90,90,1.0,0.9590629315783191,0.9999999999999999,"xlsr, one source"
+real,seen in training,fleurs,ru,phone,388,61,0.15721649484536082,0.12437887735981003,0.196775384974766,"xlsr, one source"
+fake,seen in training,say,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+fake,seen in training,piper,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+fake,seen in training,mms,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+fake,never seen,bark,ru,phone,95,89,0.9368421052631579,0.8689918917654831,0.9707355104619193,"xlsr, one source"
+fake,never seen,chatterbox,ru,phone,90,81,0.9,0.8207564910060137,0.9464938542566417,"xlsr, one source"
+fake,never seen,vosk,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, one source"
+real,seen in training,librispeech,en,phone,300,244,0.8133333333333334,0.7653802718106468,0.8533631787241056,"xlsr, one source"
+real,seen in training,golos,ru,phone,300,126,0.42,0.36550505469984274,0.47651789409979495,"xlsr, one source"
+real,seen in training,voxpopuli,en,phone,200,199,0.995,0.9722256001302286,0.999116854010634,"xlsr, one source"
+real,seen in training,rulibrispeech,ru,phone,200,153,0.765,0.7015850701327535,0.8184265467305365,"xlsr, one source"
+real,never seen,minds,en,phone,200,94,0.47,0.4020463337087108,0.5390844266463886,"xlsr, one source"
+real,never seen,minds,ru,phone,200,99,0.495,0.4264572195415849,0.5637312405175983,"xlsr, one source"
+real,never seen,ami,en,phone,100,42,0.42,0.327982249185113,0.5179369200110473,"xlsr, one source"
+real,never seen,podlodka,ru,phone,50,43,0.86,0.738135428014719,0.9304925473797714,"xlsr, one source"
+real,never seen,own,en,phone,15,14,0.9333333333333333,0.7018292244757601,0.9881334113938051,"xlsr, one source"
+fake,never seen,chatterbox_clone,en,phone,15,15,1.0,0.7961107336956521,1.0,"xlsr, one source"
+real,never seen,own,ru,phone,15,15,1.0,0.7961107336956521,1.0,"xlsr, one source"
+fake,never seen,chatterbox_clone,ru,phone,15,13,0.8666666666666667,0.6211750079348376,0.9626395301086407,"xlsr, one source"
+real,seen in training,ALL,all,clean,1713,667,0.38937536485697605,0.3665560976414115,0.41268969882577555,"xlsr, one source"
+fake,seen in training,ALL,all,clean,2040,2040,1.0,0.9981204022855783,1.0,"xlsr, one source"
+fake,never seen,ALL,all,clean,1090,1054,0.9669724770642202,0.9546155457607107,0.9760493695250124,"xlsr, one source"
+real,never seen,ALL,all,clean,580,253,0.4362068965517241,0.39639772991749145,0.47685556344152913,"xlsr, one source"
+real,seen in training,ALL,all,phone,1713,807,0.4711033274956217,0.44755580640946946,0.49478016681019144,"xlsr, one source"
+fake,seen in training,ALL,all,phone,2040,2040,1.0,0.9981204022855783,1.0,"xlsr, one source"
+fake,never seen,ALL,all,phone,1090,1055,0.9678899082568807,0.9556707217696969,0.976822611817177,"xlsr, one source"
+real,never seen,ALL,all,phone,580,307,0.5293103448275862,0.48862858482458166,0.5696063884969493,"xlsr, one source"
+real,seen in training,fleurs,en,clean,325,0,0.0,0.0,0.011682220254371706,"xlsr, many + phone"
+fake,seen in training,say,en,clean,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,"xlsr, many + phone"
+fake,seen in training,piper,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, many + phone"
+fake,seen in training,mms,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, many + phone"
+fake,never seen,kokoro,en,clean,365,268,0.7342465753424657,0.6866595448749312,0.776954103910889,"xlsr, many + phone"
+fake,never seen,bark,en,clean,105,43,0.4095238095238095,0.320277462985214,0.5051569297469766,"xlsr, many + phone"
+fake,never seen,chatterbox,en,clean,90,58,0.6444444444444445,0.54149980634835,0.7355628183298311,"xlsr, many + phone"
+real,seen in training,fleurs,ru,clean,388,8,0.020618556701030927,0.010483836320753536,0.04015295160579637,"xlsr, many + phone"
+fake,seen in training,say,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+fake,seen in training,piper,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+fake,seen in training,mms,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+fake,never seen,bark,ru,clean,95,61,0.6421052631578947,0.5419132697778168,0.7312510658865188,"xlsr, many + phone"
+fake,never seen,chatterbox,ru,clean,90,57,0.6333333333333333,0.530221128924694,0.7255289861628577,"xlsr, many + phone"
+fake,never seen,vosk,ru,clean,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+real,seen in training,librispeech,en,clean,300,11,0.03666666666666667,0.02059509146818067,0.06445448699638771,"xlsr, many + phone"
+real,seen in training,golos,ru,clean,300,17,0.056666666666666664,0.03567717591318777,0.08886666535147117,"xlsr, many + phone"
+real,seen in training,voxpopuli,en,clean,200,4,0.02,0.007804300176394188,0.050287865505193874,"xlsr, many + phone"
+real,seen in training,rulibrispeech,ru,clean,200,1,0.005,0.0008831459893662054,0.02777439986977148,"xlsr, many + phone"
+real,never seen,minds,en,clean,200,6,0.03,0.013820125830748327,0.06389511973247333,"xlsr, many + phone"
+real,never seen,minds,ru,clean,200,5,0.025,0.010724561470787711,0.05717914415161715,"xlsr, many + phone"
+real,never seen,ami,en,clean,100,0,0.0,0.0,0.03699480747600191,"xlsr, many + phone"
+real,never seen,podlodka,ru,clean,50,2,0.04,0.011038652660826577,0.13460337877954667,"xlsr, many + phone"
+real,never seen,own,en,clean,15,5,0.3333333333333333,0.15176100694691236,0.5828687484878701,"xlsr, many + phone"
+fake,never seen,chatterbox_clone,en,clean,15,11,0.7333333333333333,0.4804911034231324,0.8910272389681718,"xlsr, many + phone"
+real,never seen,own,ru,clean,15,13,0.8666666666666667,0.6211750079348376,0.9626395301086407,"xlsr, many + phone"
+fake,never seen,chatterbox_clone,ru,clean,15,8,0.5333333333333333,0.3011663015105079,0.7519077474025355,"xlsr, many + phone"
+real,seen in training,fleurs,en,phone,325,2,0.006153846153846154,0.0016891965982779571,0.022156934791424554,"xlsr, many + phone"
+fake,seen in training,say,en,phone,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,"xlsr, many + phone"
+fake,seen in training,piper,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,"xlsr, many + phone"
+fake,seen in training,mms,en,phone,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,"xlsr, many + phone"
+fake,never seen,kokoro,en,phone,365,196,0.536986301369863,0.48571170575360473,0.5874904493178404,"xlsr, many + phone"
+fake,never seen,bark,en,phone,105,38,0.3619047619047619,0.27636595500808664,0.45719180231999373,"xlsr, many + phone"
+fake,never seen,chatterbox,en,phone,90,61,0.6777777777777778,0.5756664407220551,0.765333712728014,"xlsr, many + phone"
+real,seen in training,fleurs,ru,phone,388,15,0.03865979381443299,0.023565836387486452,0.06279967457408576,"xlsr, many + phone"
+fake,seen in training,say,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+fake,seen in training,piper,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+fake,seen in training,mms,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+fake,never seen,bark,ru,phone,95,69,0.7263157894736842,0.629183776326649,0.8058557212128485,"xlsr, many + phone"
+fake,never seen,chatterbox,ru,phone,90,58,0.6444444444444445,0.54149980634835,0.7355628183298311,"xlsr, many + phone"
+fake,never seen,vosk,ru,phone,315,315,1.0,0.9879513840101166,1.0,"xlsr, many + phone"
+real,seen in training,librispeech,en,phone,300,16,0.05333333333333334,0.03309162538404202,0.08486983874726851,"xlsr, many + phone"
+real,seen in training,golos,ru,phone,300,26,0.08666666666666667,0.05982848995477098,0.12395674551002385,"xlsr, many + phone"
+real,seen in training,voxpopuli,en,phone,200,4,0.02,0.007804300176394188,0.050287865505193874,"xlsr, many + phone"
+real,seen in training,rulibrispeech,ru,phone,200,6,0.03,0.013820125830748327,0.06389511973247333,"xlsr, many + phone"
+real,never seen,minds,en,phone,200,10,0.05,0.027382349028644986,0.08957905629784384,"xlsr, many + phone"
+real,never seen,minds,ru,phone,200,11,0.055,0.030985020801370097,0.0957879244659355,"xlsr, many + phone"
+real,never seen,ami,en,phone,100,0,0.0,0.0,0.03699480747600191,"xlsr, many + phone"
+real,never seen,podlodka,ru,phone,50,8,0.16,0.08337321362087696,0.2851448096176598,"xlsr, many + phone"
+real,never seen,own,en,phone,15,5,0.3333333333333333,0.15176100694691236,0.5828687484878701,"xlsr, many + phone"
+fake,never seen,chatterbox_clone,en,phone,15,13,0.8666666666666667,0.6211750079348376,0.9626395301086407,"xlsr, many + phone"
+real,never seen,own,ru,phone,15,11,0.7333333333333333,0.4804911034231324,0.8910272389681718,"xlsr, many + phone"
+fake,never seen,chatterbox_clone,ru,phone,15,10,0.6666666666666666,0.41713125151212976,0.8482389930530876,"xlsr, many + phone"
+real,seen in training,ALL,all,clean,1713,41,0.023934617629889084,0.01769171868359354,0.0323080017332463,"xlsr, many + phone"
+fake,seen in training,ALL,all,clean,2040,2039,0.9995098039215686,0.9972283875315882,0.9999134653399846,"xlsr, many + phone"
+fake,never seen,ALL,all,clean,1090,821,0.7532110091743119,0.7267557150793433,0.777887736038259,"xlsr, many + phone"
+real,never seen,ALL,all,clean,580,31,0.05344827586206897,0.03790629319666548,0.0748667603164792,"xlsr, many + phone"
+real,seen in training,ALL,all,phone,1713,69,0.040280210157618214,0.031951605165900204,0.05066615060143441,"xlsr, many + phone"
+fake,seen in training,ALL,all,phone,2040,2038,0.9990196078431373,0.9964321979043057,0.9997311055532617,"xlsr, many + phone"
+fake,never seen,ALL,all,phone,1090,760,0.6972477064220184,0.6693181326241844,0.7237918021232232,"xlsr, many + phone"
+real,never seen,ALL,all,phone,580,45,0.07758620689655173,0.058488160322687624,0.10224310651407083,"xlsr, many + phone"
