@@ -32,9 +32,10 @@ def main() -> None:
     clips = clips[clips["clip_id"].isin(features["clean"]["index"])]
     train_clips = clips[clips["split"] == "train"]
     dev = clips[clips["split"] == "dev"]
-    real_dev = dev[dev["label"] == "real"]
-    unseen = dev[(dev["label"] == "real") | (dev["engine"] == "silero")]
-    seen = dev[(dev["label"] == "real") | (dev["engine"].isin(TRAIN_ENGINES))]
+    # real dev clips from the same source as training (FLEURS); other sources are reported separately
+    real_dev = dev[(dev["label"] == "real") & (dev["source"] == "fleurs")]
+    unseen = pd.concat([real_dev, dev[dev["engine"] == "silero"]])
+    seen = pd.concat([real_dev, dev[dev["engine"].isin(TRAIN_ENGINES)]])
     print(f"train {len(train_clips)} clips, dev {len(dev)} clips "
           f"({len(real_dev)} real, {(dev.engine == 'silero').sum()} Silero)\n")
 
@@ -61,10 +62,10 @@ def main() -> None:
             ("xlsr, clean + phone", "xlsr", best, ("clean", "phone"))]:
         detector = train(features, train_clips, kind, layer, conditions)
         set_threshold(detector, features, real_dev)
-        table = report(detector, features, dev, ["label", "engine", "lang"])
+        table = report(detector, features, dev, ["label", "source", "engine", "lang"])
         results[name] = table
         print(f"\n== {name}  (alarm level {detector.threshold:.3f})")
-        wide = table.pivot_table(index=["label", "engine"], columns=["lang", "condition"],
+        wide = table.pivot_table(index=["label", "source", "engine"], columns=["lang", "condition"],
                                  values="share", sort=False)
         print((100 * wide).round(0).to_string())
 
