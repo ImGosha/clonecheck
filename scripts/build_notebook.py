@@ -42,7 +42,7 @@ md("## 0. Setup")
 code("""
 import os, subprocess
 in_project = os.path.exists("clonecheck/config.py")
-in_project or subprocess.run("git clone -q https://github.com/ImGosha/clonecheck.git", shell=True)
+in_project or subprocess.run("git clone -q --depth 1 https://github.com/ImGosha/clonecheck.git", shell=True)
 in_project or os.chdir("clonecheck")
 """)
 code("""

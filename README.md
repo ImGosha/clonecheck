@@ -18,7 +18,7 @@ CloneCheck helps a grandparent who gets a call from "a grandchild in trouble" by
 > **In:** a 5-second clip of *"I'm in a bit of trouble and I need your help right now."*
 > **Out:** for my own recording, **Sounds like a real person** (AI-voice score 0%). For an AI copy of my voice saying the same words, **Sounds AI-generated** (score 26%; the alarm goes off above 8%).
 
-To use it, you put the call on speaker, record a few seconds, and drop the clip into the app (`python app.py`). It also runs as a function in the notebook.
+To use it, you put the call on speaker, record a few seconds, and drop the clip into the app (`python app.py`).
 
 ## What we added
 
@@ -32,7 +32,7 @@ Our own idea. The sample scam-text filter says it cannot catch family-emergency 
 
 **Data.** 6,282 real clips from ten public speech datasets and my own recordings, and 8,093 fake clips in which AI voice generators read the same texts. Cleaning: every clip is trimmed of silence, cut to 10 seconds and set to the same loudness, then scored as recorded and through a simulated phone line. Sentences with digits were left out of the fake set, because generators read them differently.
 
-**Split.** By where a clip came from, not at random: 4,459 clips to train, 4,433 dev clips to choose settings, 5,483 test clips. The detector trains on three generators and five real-voice datasets. Four other generators and four other sources of real voices appear only in the test. The clips have no dates, so the "train on earlier, test on later" rule does not apply.
+**Split.** By where a clip came from, not at random: 4,459 clips to train, 4,433 dev clips to choose settings, 5,483 test clips (60 of them, a second recording of my voice, were added after the main test). The detector trains on three generators and five real-voice datasets. Four other generators and four other sources of real voices appear only in the test. The clips have no dates, so the "train on earlier, test on later" rule does not apply.
 
 **Model.** Each clip goes through [XLS-R](https://huggingface.co/facebook/wav2vec2-xls-r-300m), a pretrained speech model that we do not train. We average one of its layers (1,024 numbers per clip) and train our own logistic regression on those numbers. We chose it because it is simple to explain and hard to overfit with a few thousand clips.
 

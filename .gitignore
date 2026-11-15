@@ -14,3 +14,4 @@ latest_silero_models.yml
 .venv-chatterbox/
 # the full 25-layer features are too big for GitHub; a slim copy is saved in data/features_slim/
 data/features/
+SUBMISSION.md
