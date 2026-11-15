@@ -1,3 +1,4 @@
+# Enough to run the notebook, the scoring scripts and the demo app.
 numpy
 scipy
 pandas
@@ -8,8 +9,3 @@ librosa
 torch
 transformers
 gradio
-# only needed to regenerate the fake voices (scripts/generate.py)
-piper-tts
-kokoro
-silero
-huggingface_hub

@@ -230,3 +230,20 @@ def own_voice(methods: dict, features: dict, clips: pd.DataFrame,
                          "My real voice wrongly flagged": f"{int(part.loc['real', 'flagged'])} of {int(part.loc['real', 'clips'])}",
                          "AI copy of my voice caught": f"{int(part.loc['fake', 'flagged'])} of {int(part.loc['fake', 'clips'])}"})
     return pd.DataFrame(rows).set_index(["Method", "Heard"])
+
+
+def alarm_meaning(caught: float, false_alarm: float, shares=(0.5, 0.1, 0.01)) -> pd.DataFrame:
+    """If the alarm goes off, how likely is it that the voice really is AI? (precision)
+
+    That depends on how common AI voices are among the calls checked. `caught`
+    is the share of AI voices flagged (recall); `false_alarm` is the share of
+    real voices flagged.
+    """
+    rows = []
+    for share in shares:
+        right = caught * share
+        wrong = false_alarm * (1 - share)
+        rows.append({"AI voices among the calls checked": f"1 in {round(1 / share)}",
+                     "Alarms that are really AI (precision)": f"{right / (right + wrong):.0%}",
+                     "False alarms for every real catch": round(wrong / right, 1)})
+    return pd.DataFrame(rows)

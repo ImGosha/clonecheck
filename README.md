@@ -3,9 +3,9 @@
 **Track:** AI + Finance
 **Team:** Gosha (solo)
 
-*This project is a prototype and is not financial advice.*
+This project is a prototype and is not financial advice.
 
-**Code and results:** [CloneCheck.ipynb](CloneCheck.ipynb) (runs in a minute) · **Full method and results:** [DETAILS.md](DETAILS.md) · **Starting point:** our own idea
+**Code:** [CloneCheck.ipynb](CloneCheck.ipynb), saved with its outputs ([open in Colab](https://colab.research.google.com/github/ImGosha/clonecheck/blob/main/CloneCheck.ipynb)) · **Long version:** [DETAILS.md](DETAILS.md)
 
 ## The problem
 
@@ -13,83 +13,68 @@ In a "family emergency" scam, a caller pretends to be a grandchild in trouble an
 
 ## What we built
 
-CloneCheck helps a grandparent who gets a call from "a grandchild in trouble" by taking a few seconds of the caller's voice and saying whether it sounds like a real person or an AI-generated voice.
+CloneCheck helps a grandparent who gets a call from "a grandchild in trouble" by taking a few seconds of the caller's voice and giving back "sounds like a real person" or "sounds AI-generated", with a score.
 
 > **In:** a 5-second clip of *"I'm in a bit of trouble and I need your help right now."*
-> **Out:** **Sounds like a real person** (AI-voice score 0%) for my own recording; **Sounds AI-generated** (score 26%, alarm above 8%) for an AI copy of my voice.
+> **Out:** for my own recording, **Sounds like a real person** (AI-voice score 0%). For an AI copy of my voice saying the same words, **Sounds AI-generated** (score 26%; the alarm goes off above 8%).
 
-It runs in the notebook and as a small web app (`python app.py`).
-
-**The result in one line: it catches every AI voice from the generators it trained on, 70% from generators it never met, and only 30% of AI copies of my own voice.**
+To use it, you put the call on speaker, record a few seconds, and drop the clip into the app (`python app.py`). It also runs as a function in the notebook.
 
 ## What we added
 
-Our own idea. The organisers' sample scam-text filter says it cannot catch family-emergency scams, because they contain no scammy words. This project goes after that case as it now arrives: a phone call.
+Our own idea. The sample scam-text filter says it cannot catch family-emergency scams, because they contain no scammy words. This project goes after that case as it now arrives: a phone call.
 
-- **Our own data.** 14,375 clips in English and Russian: 6,282 real voices (ten public datasets plus 60 recordings of my own voice) and 8,093 fake voices I generated with eight AI voice generators, including copies of my own voice.
-- **Our own question.** A scam call comes from a voice generator the detector has never heard, on a microphone it has never heard, over a phone line. Does it still work then?
-- **Our own user.** For a grandparent, missing a fake and accusing a real grandchild are different mistakes, so they are reported separately.
+- **Our own data.** 14,375 clips in English and Russian. I generated the 8,093 fake ones with eight AI voice generators, recorded my own voice twice, and made AI copies of it.
+- **Our own question.** A scam call uses a voice generator the detector has never heard, on a microphone it has never heard, over a phone line. Does it still work then?
+- **Our own user.** For a grandparent, missing a fake and accusing a real grandchild are different mistakes, so they are counted separately.
 
 ## How it works
 
-**Data.** Real speech from public datasets; fake speech made by AI voice generators reading the same texts. Every clip is trimmed, cut to 10 seconds, set to the same loudness, and scored both as recorded and through a simulated phone line.
+**Data.** 6,282 real clips from ten public speech datasets and my own recordings, and 8,093 fake clips in which AI voice generators read the same texts. Cleaning: every clip is trimmed of silence, cut to 10 seconds and set to the same loudness, then scored as recorded and through a simulated phone line. Sentences with digits were left out of the fake set, because generators read them differently.
 
-**Model.** Each clip goes through [XLS-R](https://huggingface.co/facebook/wav2vec2-xls-r-300m), a speech model pretrained by Meta, which we do not train. We average one of its layers (1,024 numbers per clip) and train our own logistic regression on those numbers. It is simple to explain and hard to overfit.
+**Split.** By where a clip came from, not at random: 4,459 clips to train, 4,433 dev clips to choose settings, 5,483 test clips. The detector trains on three generators and five real-voice datasets. Four other generators and four other sources of real voices appear only in the test. The clips have no dates, so the "train on earlier, test on later" rule does not apply.
 
-**Fair testing.** Data is split by where it came from, not at random. The detector trains on three generators and five real-voice datasets. Four other generators and four other sources of real voices are never seen until the test. Settings were chosen on separate dev data, and each step was committed before the next was run.
+**Model.** Each clip goes through [XLS-R](https://huggingface.co/facebook/wav2vec2-xls-r-300m), a pretrained speech model that we do not train. We average one of its layers (1,024 numbers per clip) and train our own logistic regression on those numbers. We chose it because it is simple to explain and hard to overfit with a few thousand clips.
+
+**Measure.** AI voices caught (recall) and real people wrongly flagged (false alarms), reported separately. Accuracy would hide which mistake is being made.
 
 ## Results
 
-Voices and generators the detector never met, heard through a phone line:
+Our baseline (always answer "real") caught 0% of AI voices. Our model caught 70% on held-out test data and wrongly flagged 8% of real people. These are voices and generators it never met, heard through a phone line:
 
 | Method | AI voices caught | Real people wrongly flagged |
 |---|---|---|
-| Always say "real" (simplest baseline) | 0% (0 of 1,090) | 0% (0 of 580) |
-| Logistic regression on simple audio features | 53% | 19% |
+| Baseline: always say "real" | 0% (0 of 1,090) | 0% (0 of 580) |
+| Baseline: logistic regression on simple audio features | 53% | 19% |
 | Version 1: real voices from one dataset | 97% | 53% |
-| **CloneCheck: real voices from five datasets** | **70%** | **8%** |
+| **CloneCheck: real voices from five datasets** | **70% (760)** | **8% (45)** |
 
 ![Results on never-seen voices and generators](results/test_never_seen.png)
 
-- **A perfect score was the warning.** Version 1 caught 100% of fakes on its own data. It had learned what one dataset's recordings sound like and called everything else fake, including 53% of real people. Training on five datasets fixed that; 70% is the honest number.
-- **Groups.** Real people were wrongly flagged 3% of the time in English and 6% in Russian; women 1 to 3%, men 2 to 5%. This test shows no clear gap, but it is too small to rule one out.
+- **Our improvement.** Version 1 caught 100% of fakes on its own data, which looked too good. It had learned what one dataset's recordings sound like and called everything else fake, including half of all real people. Training on five datasets cut false alarms from 53% to 8%.
+- **What an alarm means.** In this test 94% of alarms were right. If only 1 call in 100 were an AI voice, 8% would be.
+- **Groups.** Real people wrongly flagged: 3% in English and 6% in Russian; women 1 to 3%, men 2 to 5%. On dev data, speakers with Irish, Midlands and Welsh accents were flagged 17 to 22% of the time. That may be the accent or the unfamiliar dataset; we cannot separate them.
 
-**Where it fails.**
+**Where it fails, and why we think so.**
 
-- **It flagged me.** It called my own laptop recordings AI in 18 of 30 clips. Adding background hiss changed that to 1 of 30, and also made it miss the AI copy of my voice (19 of 30 caught, down to 2). It had partly learned "clean recording means AI", which a scammer could beat with street noise.
-- **Version 3 removed that shortcut but is not a fix.** Trained with noise and echo on real and fake clips alike, it catches 58% of new-generator fakes with or without noise (version 2: 70% without, 19% with). On a fresh phone recording of my voice it flagged the real me 10 of 30 times and caught 14 of 30 copies.
-- **It misses half of Bark** (one of the new generators), usually with full confidence.
+- **Two clips, same request.** A real bank customer saying *"I need to freeze my card"* scored 99.8% AI. An AI voice (Bark) saying *"Freeze my card please"* scored 0%.
+- **It flagged me.** It called 18 of my 30 laptop recordings AI. When we added background hiss, that fell to 1 of 30, and it also stopped catching the AI copy of my voice (19 of 30, down to 2). It had partly learned "a clean recording is AI", which a scammer could beat with street noise.
+- **A second improvement removed that shortcut but did not fix it.** Version 3, trained with noise and echo on real and fake clips alike, catches 58% of new-generator fakes with or without noise (version 2: 70% without, 19% with). On a fresh phone recording of my voice it flagged the real me 10 of 30 times and caught 14 of 30 copies.
 
-**The main takeaway.**
-
-| Situation (CloneCheck, phone line) | AI voices caught |
-|---|---|
-| Generators it trained on | 100% |
-| Generators it never met | 70% |
-| A copy of my own voice, made from a phone memo | 30% (9 of 30) |
-
-The further a call is from what the detector trained on, the less it catches, and a test on familiar generators hides this completely. Today the honest answer to "is that really your grandson?" is that this tool cannot tell you.
+**The main takeaway.** CloneCheck caught 100% of AI voices from generators it trained on, 70% from generators it never met, and 30% (9 of 30) of copies of my own voice made from a phone memo. The further a call is from the training data, the less it catches, and a test on familiar generators hides this. Today the honest answer to "is that really your grandson?" is that this tool cannot tell you.
 
 ## What we'd do next
 
-- **Train on cloning tools and hold some out.** The training generators are ordinary text-to-speech; scammers use cloning tools.
-- **Real calls and more people.** Record real phone calls, and voices from family members with their permission.
-- **Do not rely on the voice alone.** Hang up and call back on a number you already have, or agree a family code word.
+- **Train on voice-cloning tools and hold some out.** The training generators are ordinary text-to-speech; scammers use cloning tools.
+- **Test on real phone calls and more people,** with recordings from family members who give permission.
+
+Until then the safest advice needs no AI: hang up and call back on a number you already have.
 
 ## Sources
 
-- **Real speech:** [FLEURS](https://huggingface.co/datasets/google/fleurs), [LibriSpeech](https://www.openslr.org/12), [VoxPopuli](https://github.com/facebookresearch/voxpopuli), [Golos](https://github.com/sberdevices/golos), [RuLibriSpeech](https://huggingface.co/datasets/bond005/rulibrispeech), [English Dialects](https://huggingface.co/datasets/ylacombe/english_dialects), [SOVA RuDevices](https://huggingface.co/datasets/bond005/sova_rudevices), [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14), [AMI](https://huggingface.co/datasets/edinburghcstr/ami), [Podlodka Speech](https://huggingface.co/datasets/bond005/podlodka_speech), and 60 recordings of my own voice.
-- **Voice generators:** macOS `say`, [Piper](https://github.com/OHF-Voice/piper1-gpl), [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng), [Silero](https://github.com/snakers4/silero-models), [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M), [Bark](https://huggingface.co/suno/bark-small), [Chatterbox](https://github.com/resemble-ai/chatterbox), [Vosk TTS](https://github.com/alphacep/vosk-tts).
-- **Pretrained models:** [XLS-R 300M](https://huggingface.co/facebook/wav2vec2-xls-r-300m) (the detector's features); [Whisper small](https://huggingface.co/openai/whisper-small) (only to find the sentences inside my phone memo).
-- **Libraries:** PyTorch, Hugging Face Transformers, scikit-learn, librosa, SciPy, pandas, soundfile, matplotlib, Gradio.
+- **Datasets (real speech):** [FLEURS](https://huggingface.co/datasets/google/fleurs), [LibriSpeech](https://www.openslr.org/12), [VoxPopuli](https://github.com/facebookresearch/voxpopuli), [Golos](https://github.com/sberdevices/golos) ([10-hour subset](https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd)), [RuLibriSpeech](https://huggingface.co/datasets/bond005/rulibrispeech), [English Dialects](https://huggingface.co/datasets/ylacombe/english_dialects), [SOVA RuDevices](https://huggingface.co/datasets/bond005/sova_rudevices), [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14), [AMI](https://huggingface.co/datasets/edinburghcstr/ami), [Podlodka Speech](https://huggingface.co/datasets/bond005/podlodka_speech). My own voice is the only personal data; nobody else was recorded.
+- **Voice generators (fake speech):** macOS `say`, [Piper](https://github.com/OHF-Voice/piper1-gpl) with [piper-voices](https://huggingface.co/rhasspy/piper-voices), [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng), [Silero](https://github.com/snakers4/silero-models), [Kokoro](https://huggingface.co/hexgrad/Kokoro-82M), [Bark](https://huggingface.co/suno/bark-small), [Chatterbox](https://github.com/resemble-ai/chatterbox), [Vosk TTS](https://github.com/alphacep/vosk-tts).
+- **Pretrained models:** [XLS-R 300M](https://huggingface.co/facebook/wav2vec2-xls-r-300m) for the detector's features; [Whisper small](https://huggingface.co/openai/whisper-small) only to find the sentences inside my phone memo.
+- **Libraries:** [PyTorch](https://pytorch.org/), [Transformers](https://huggingface.co/docs/transformers), [scikit-learn](https://scikit-learn.org/), [librosa](https://librosa.org/), [SciPy](https://scipy.org/), [NumPy](https://numpy.org/), [pandas](https://pandas.pydata.org/), [soundfile](https://github.com/bastibe/python-soundfile), [matplotlib](https://matplotlib.org/), [Gradio](https://www.gradio.app/), [FFmpeg](https://ffmpeg.org/).
 - **AI tools:** [Claude Code](https://claude.com/claude-code) (Anthropic) was used heavily as a coding assistant: it wrote most of the code and helped draft this write-up, working from my idea and direction.
-- Licences and the full list of links are in [DETAILS.md](DETAILS.md).
-
-## Run it yourself
-
-```bash
-git clone https://github.com/ImGosha/clonecheck.git && cd clonecheck
-pip install -r requirements.txt
-python scripts/evaluate_test.py     # re-trains and re-scores from saved features, no audio needed
-python app.py                       # the demo app
-```
+- **Tutorials:** none. The write-up follows the hackathon's template and sample submission.

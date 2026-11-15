@@ -158,6 +158,16 @@ These are the numbers for clips heard through the phone line. "New" means genera
 """)
 code('display(Image("results/test_never_seen.png"))')
 
+md("""
+### What does an alarm mean?
+
+The Finance brief asks for precision and recall rather than accuracy. "AI voices caught" is recall. Precision is the share of alarms that are right, and it depends on how common AI voices are among the calls being checked. With CloneCheck's 70% caught and 8% false alarms (760 of 1,090 and 45 of 580, from the table above):
+""")
+code("report.alarm_meaning(caught=760 / 1090, false_alarm=45 / 580)")
+md("""
+In the test set most never-seen clips are fake, so most alarms are right. In real life almost every call is a real person. If 1 call in 100 were an AI voice, only 8% of alarms would be right. So this could not listen to every call; it would have to be used only on calls that already seem suspicious.
+""")
+
 md("### By generator and by dataset\n\nFake clips: % caught. Real clips: % wrongly flagged.")
 code('report.flag_table(clonecheck, features, test_clips, counts=True)')
 md("""
@@ -167,7 +177,11 @@ md("""
 
 md("### Does it treat groups differently?\n\nFalse alarms on real test voices by speaker gender, for the datasets that record gender (FLEURS and VoxPopuli).")
 code('report.by_gender("xlsr, many + phone")')
-md("The ranges overlap, so this test does not show a gender gap. It is too small to rule one out. False alarms are a little higher in Russian than in English for both.")
+md("""
+The ranges overlap, so this test does not show a gender gap. It is too small to rule one out. False alarms are a little higher in Russian than in English for both.
+
+Accent is harder to check. On dev data (section 4), real speakers with Irish, Midlands and Welsh accents were flagged 17% to 22% of the time, more than any other English dataset. That could be the accents or simply an unfamiliar dataset; we cannot separate the two. None of the datasets record age.
+""")
 
 md("""
 ## 6. Where it fails
@@ -177,6 +191,9 @@ md("""
 code('report.mistakes("xlsr, many + phone", "real")')
 md("### AI voices it was most sure were real")
 code('report.mistakes("xlsr, many + phone", "fake")')
+md("""
+Two of these clips make the same request. A real bank customer saying *"I need to freeze my card"* scored 99.8% AI. An AI voice (Bark) saying *"Freeze my card please"* scored 0%.
+""")
 
 md("""
 ### It flagged me

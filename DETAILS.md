@@ -7,6 +7,29 @@
 
 This is the long version. The one-page write-up is [README.md](README.md); the notebook that produces every number is [CloneCheck.ipynb](CloneCheck.ipynb).
 
+## Where each hackathon requirement is answered
+
+| The hackathon asks | Where it is answered |
+|---|---|
+| Who is it for? One specific user and the moment they reach for the tool | [README](README.md), "What we built": a grandparent on a call from "a grandchild in trouble" |
+| What goes in and what comes out? A real input producing a result | README example; notebook section 1 (clips you can play, with their scores); `app.py` |
+| Does it beat a simple baseline? Both scores side by side | README results table; notebook section 5. Two baselines: always "real", and simple audio features |
+| Where does it fail? At least one wrong example, and why | README "Where it fails"; section 4 below; notebook section 6 |
+| Results from test data the model did not see | "Fair testing" below: whole generators and whole datasets are held out; each step was committed before the next was run |
+| Something of your own: user, data or question | README "What we added" |
+| One improvement, made and measured | Version 1 to version 2 (section 2); version 3 (section 5) |
+| One main takeaway | README, end of Results |
+| Finance: a measure that fits, precision and recall rather than accuracy | AI voices caught (recall) and real people wrongly flagged, everywhere; precision in "What an alarm means" (section 1) |
+| Finance: train on earlier data, test on later, if the data has dates | The clips have no dates. They are split by generator and by dataset instead |
+| Finance: the line "This project is a prototype and is not financial advice." | Top of the README, this file and the notebook |
+| Finance: check for unfair treatment of a group | Language, gender and accent: section 3 |
+| Code that anyone can open, notebook saved with outputs | `CloneCheck.ipynb`; it re-runs in about a minute from the saved features |
+| Write-up of about one page, using the template | [README.md](README.md) |
+| Credits: every dataset, model, tutorial and AI tool, with links | "Sources" in the README and below |
+| Rules: built during the weekend; AI is central | First commit Saturday 14 November 2026; the trained detector is the whole product |
+| Rules: public or synthetic data, no personal information without permission | Public datasets, generated voices and my own voice. Nobody else was recorded, and my recordings are not in the repository |
+| Rules: honest results, including weak ones | Sections 4 and 5: it flagged me, and it cannot tell my voice from a copy |
+
 ## The problem
 
 In a "family emergency" scam, a caller pretends to be a grandchild in trouble and asks for money right now. Free AI tools can now copy a voice from a few seconds of audio: I copied my own on a laptop in five minutes. A grandparent who hears a familiar voice asking for help has no way to tell, in the moment, whether a person or a program is speaking.
@@ -66,6 +89,16 @@ Of CloneCheck's 45 wrongly flagged clips, 16 are my own voice (section 4); on th
 
 On generators and datasets it *was* trained on (but new sentences and recordings), CloneCheck caught 100% of fakes (2,038 of 2,040) and flagged 4% of real voices (69 of 1,713). The gap between 100% and 70% is the cost of a generator being new.
 
+**What an alarm means (precision).** In this test set most never-seen clips are fake, so 94% of CloneCheck's alarms were right (760 of 805). Real life is different: almost every call is a real person. With the same 70% caught and 8% false alarms:
+
+| AI voices among the calls checked | Alarms that are really AI | False alarms for every real catch |
+|---|---|---|
+| 1 in 2 | 90% | 0.1 |
+| 1 in 10 | 50% | 1 |
+| 1 in 100 | 8% | 11 |
+
+So even the 8% false-alarm rate is too high for a tool that listens to every call. It would have to be used only on calls that already seem suspicious.
+
 ### 2. A perfect score was the warning
 
 Version 1 was trained with real voices from one dataset, FLEURS. On dev data it caught every fake, including Silero, a generator it had never heard. That looked too good, so we checked real voices from other datasets: it flagged 85% of LibriSpeech audiobook readers as AI. It had learned "does this sound like a FLEURS recording?", not "is this a human?". Anything that was not FLEURS was "fake", which is also why it "caught" every fake.
@@ -84,6 +117,8 @@ The fix, chosen on dev data only: real voices from five datasets in training, ea
 
 - **Language.** Real voices from the public test datasets were wrongly flagged 3% of the time in English (32 of 1,125) and 6% in Russian (66 of 1,138).
 - **Gender** (for the datasets that record it). Wrongly flagged: women 1% in English and 3% in Russian, men 2% and 5%. The ranges overlap, so this test does not show a gender gap, but it is too small to rule one out.
+- **Accent** (dev data). Real speakers with Irish, Midlands and Welsh accents (English Dialects) were wrongly flagged 17% of the time as recorded and 22% over the phone line (34 and 45 of 200), against 0% to 13% for the other English datasets. This could be the accents or simply an unfamiliar dataset; we cannot separate the two. Either way, a grandparent with a regional accent in the family should expect more false alarms.
+- **Age.** None of the datasets record age, so we could not check it. Older voices are the ones that matter most for this user.
 
 ### 4. Where it fails
 
@@ -97,6 +132,8 @@ Why we think so: my recordings were made in a browser, which removes background 
 | AI copy of my voice, caught | 19 of 30 | 2 of 30 |
 
 Hiss makes the detector say "real" for both. So part of what it has learned is "a clean recording is AI, background noise is human". That is the same kind of shortcut as version 1, one level down, and a scammer could use it: play street noise behind the cloned voice.
+
+**Two clips, same request.** A real bank customer (MInDS-14) saying *"I need to freeze my card"* scored 99.8% AI. An AI voice (Bark) saying *"Freeze my card please"* scored 0%.
 
 **It misses half of Bark.** 93 of 200 Bark clips got through, and 65 of those scored below 1%, so the detector was confidently wrong. We do not know why. Our guess is that Bark builds audio in a different way from the three generators in training, and the detector has only learned what those three sound like.
 
@@ -153,7 +190,8 @@ The further a call is from what the detector trained on, the less it catches. A 
 - **Data (real speech):** [FLEURS](https://huggingface.co/datasets/google/fleurs) (Google, CC BY 4.0); [LibriSpeech](https://www.openslr.org/12) (CC BY 4.0); [VoxPopuli](https://github.com/facebookresearch/voxpopuli) (Meta, CC0); [Golos](https://github.com/sberdevices/golos) (SberDevices), through the [10-hour crowd subset](https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd); [RuLibriSpeech](https://huggingface.co/datasets/bond005/rulibrispeech); [English Dialects](https://huggingface.co/datasets/ylacombe/english_dialects) (Google, CC BY-SA 4.0); [SOVA RuDevices](https://huggingface.co/datasets/bond005/sova_rudevices); [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) (PolyAI, CC BY 4.0); [AMI](https://huggingface.co/datasets/edinburghcstr/ami) (CC BY 4.0); [Podlodka Speech](https://huggingface.co/datasets/bond005/podlodka_speech); 60 recordings of my own voice (30 on a laptop, 30 on a phone).
 - **Voice generators (fake speech):** macOS `say`; [Piper](https://github.com/OHF-Voice/piper1-gpl) with [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices); [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng) (Meta); [Silero](https://github.com/snakers4/silero-models); [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M); [Bark](https://huggingface.co/suno/bark-small) (Suno); [Chatterbox](https://github.com/resemble-ai/chatterbox) (Resemble AI); [Vosk TTS](https://github.com/alphacep/vosk-tts).
 - **Pretrained models:** [XLS-R 300M](https://huggingface.co/facebook/wav2vec2-xls-r-300m) (Meta), used by the detector; [Whisper small](https://huggingface.co/openai/whisper-small) (OpenAI), used only to find the 30 sentences inside my phone memo.
-- **Libraries:** PyTorch, Hugging Face Transformers, scikit-learn, librosa, SciPy, pandas, soundfile, matplotlib, Gradio.
+- **Libraries:** PyTorch, Hugging Face Transformers, scikit-learn, librosa, SciPy, NumPy, pandas, pyarrow, soundfile, matplotlib, Gradio, FFmpeg, Jupyter.
+- **Tutorials:** none.
 - **AI tools:** [Claude Code](https://claude.com/claude-code) (Anthropic) was used heavily as a coding assistant: it wrote most of the code and helped draft this write-up, working from my idea and direction.
 - **Reference:** the hackathon's Hacker Guide, Project Briefs and sample submission, for the structure of this write-up.
 
@@ -161,13 +199,13 @@ The further a call is from what the detector trained on, the less it catches. A 
 
 ```bash
 git clone https://github.com/ImGosha/clonecheck.git && cd clonecheck
-pip install -r requirements.txt
+pip install -r requirements.txt     # enough for the notebook, the scoring scripts and the app
 python scripts/evaluate_test.py     # the main test: re-trains and re-scores from saved features, no audio needed
 python scripts/evaluate_v3.py       # version 3 and the fresh recording
 python app.py                       # the demo app (downloads XLS-R the first time; it runs version 3)
 ```
 
-The audio itself is too large for GitHub, and my own voice recordings are kept off it. The repository holds the list of every clip ([data/clips.csv](data/clips.csv)), the features each clip was turned into, and the scripts that rebuild the audio from the public datasets and generators.
+Rebuilding the audio from scratch also needs `requirements-generate.txt` (the voice generators). The audio itself is too large for GitHub, and my own voice recordings are kept off it. The repository holds the list of every clip ([data/clips.csv](data/clips.csv)), the features each clip was turned into, and the scripts that rebuild the audio from the public datasets and generators.
 
 | Path | What it is |
 |---|---|

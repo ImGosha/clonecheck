@@ -1,0 +1,13 @@
+# Only needed to rebuild the audio from scratch (scripts/make_manifest.py,
+# add_real_sources.py, generate.py). Also needs FFmpeg and, for the
+# built-in voices, macOS.
+-r requirements.txt
+pyarrow
+huggingface_hub
+piper-tts
+kokoro
+silero
+vosk-tts
+# Chatterbox needs older libraries and its own environment:
+#   uv venv --python 3.11 .venv-chatterbox
+#   uv pip install --python .venv-chatterbox/bin/python chatterbox-tts "setuptools<81" pandas soundfile scipy
