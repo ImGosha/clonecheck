@@ -49,6 +49,8 @@ VOICES = {
     "chatterbox": {"en": ["default"], "ru": ["default"]},
     "chatterbox_clone": {"en": [], "ru": []},   # added by scripts/own_voice.py, not from the sentence lists
     "chatterbox_clone2": {"en": [], "ru": []},  # added by scripts/own_voice_session2.py
+    "chatterbox_voices": {"en": [], "ru": []},  # added by scripts/add_clone_experiment.py
+    "xtts_clone": {"en": [], "ru": []},         # added by scripts/add_clone_experiment.py
 }
 
 

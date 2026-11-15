@@ -45,6 +45,9 @@ ENGINE_ROLE = {
     "kokoro": "test", "bark": "test", "chatterbox": "test", "vosk": "test",
     "chatterbox_clone": "test",   # Chatterbox copying my own voice (scripts/own_voice.py)
     "chatterbox_clone2": "test",  # the same, from my second recording session
+    # the cloning-tool experiment (scripts/add_clone_experiment.py)
+    "chatterbox_voices": "train",  # Chatterbox copying voices of real training speakers
+    "xtts_clone": "test",          # XTTS, a cloning tool never trained on
 }
 TRAIN_ENGINES = [e for e, r in ENGINE_ROLE.items() if r == "train"]
 

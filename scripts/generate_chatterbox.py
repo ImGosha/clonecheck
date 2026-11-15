@@ -61,8 +61,11 @@ def main() -> None:
                 for r in pd.read_csv(ROOT / "data" / "own_sentences.csv").itertuples()]
     else:
         clips = pd.read_csv(ROOT / "data" / "clips.csv", keep_default_na=False)
-        jobs = [(r.lang, r.text, ROOT / r.path, None)
-                for r in clips[clips["engine"] == "chatterbox"].itertuples()]
+        # "chatterbox" rows use the built-in voice; "chatterbox_voices" rows copy the
+        # voice of the real recording named in their voice column
+        jobs = [(r.lang, r.text, ROOT / r.path,
+                 str(ROOT / r.voice) if r.voice.endswith(".wav") else None)
+                for r in clips[clips["engine"].isin(["chatterbox", "chatterbox_voices"])].itertuples()]
     only = os.environ.get("ONLY", "")          # e.g. ONLY=minds to make just those clips
     jobs = [j for j in jobs if not j[2].exists() and only in j[2].name]
     print(f"chatterbox: {len(jobs)} clips to make", flush=True)

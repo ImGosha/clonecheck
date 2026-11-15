@@ -1,0 +1,9 @@
+{
+  "layer": 10,
+  "written": "Saturday 14 November 2026, before any clip of this experiment was generated or scored",
+  "question": "The detector trained only on ordinary text-to-speech. If it also trains on one voice-cloning tool (Chatterbox), does it catch copies made by a different cloning tool it has never heard (XTTS)?",
+  "version_4": "Version 3 plus 800 training clips of Chatterbox copying real training speakers. Same layer, same training conditions (clean, phone, aug1, aug2), same alarm-level rule.",
+  "main_comparison": "Version 4 against version 3, phone line: XTTS copies caught (my voice and new speakers), and my real voice wrongly flagged.",
+  "also_reported": "Version 2 with the same extra clips; Chatterbox copies of my voice (a tool now trained on); the earlier never-seen test clips, as a repeat look.",
+  "rule": "Whatever comes out is reported. If the run is not finished and clean by Sunday noon ET, the experiment is left out of the submission."
+}
