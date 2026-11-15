@@ -1,0 +1,257 @@
+label,who,lang,condition,clips,flagged,share,low,high,version,data,seen
+real,own2,en,clean,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+fake,chatterbox_clone2,en,clean,15,2,0.13333333333333333,0.0373604698913593,0.3788249920651624,version 2,fresh,
+real,own2,ru,clean,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+fake,chatterbox_clone2,ru,clean,15,4,0.26666666666666666,0.1089727610318281,0.5195088965768675,version 2,fresh,
+real,own2,en,phone,15,1,0.06666666666666667,0.011866588606194856,0.2981707755242399,version 2,fresh,
+fake,chatterbox_clone2,en,phone,15,4,0.26666666666666666,0.1089727610318281,0.5195088965768675,version 2,fresh,
+real,own2,ru,phone,15,1,0.06666666666666667,0.011866588606194856,0.2981707755242399,version 2,fresh,
+fake,chatterbox_clone2,ru,phone,15,5,0.3333333333333333,0.15176100694691236,0.5828687484878701,version 2,fresh,
+real,own2,en,noisy,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+fake,chatterbox_clone2,en,noisy,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+real,own2,ru,noisy,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+fake,chatterbox_clone2,ru,noisy,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+real,own2,en,gated,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+fake,chatterbox_clone2,en,gated,15,3,0.2,0.07047420643610414,0.4518593533465045,version 2,fresh,
+real,own2,ru,gated,15,0,0.0,0.0,0.20388926630434784,version 2,fresh,
+fake,chatterbox_clone2,ru,gated,15,5,0.3333333333333333,0.15176100694691236,0.5828687484878701,version 2,fresh,
+real,own2,all,clean,30,0,0.0,0.0,0.113517091390478,version 2,fresh,
+fake,chatterbox_clone2,all,clean,30,6,0.2,0.09504978102401235,0.37306047381027446,version 2,fresh,
+real,own2,all,phone,30,2,0.06666666666666667,0.01847663532769335,0.21323817721072091,version 2,fresh,
+fake,chatterbox_clone2,all,phone,30,9,0.3,0.16664562643958933,0.4787612101166018,version 2,fresh,
+real,own2,all,noisy,30,0,0.0,0.0,0.113517091390478,version 2,fresh,
+fake,chatterbox_clone2,all,noisy,30,0,0.0,0.0,0.113517091390478,version 2,fresh,
+real,own2,all,gated,30,0,0.0,0.0,0.113517091390478,version 2,fresh,
+fake,chatterbox_clone2,all,gated,30,8,0.26666666666666666,0.14182495553910618,0.4444830204431169,version 2,fresh,
+real,fleurs,en,clean,325,0,0.0,0.0,0.011682220254371706,version 2,second look,seen in training
+fake,say,en,clean,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,version 2,second look,seen in training
+fake,piper,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,version 2,second look,seen in training
+fake,mms,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,version 2,second look,seen in training
+fake,kokoro,en,clean,365,268,0.7342465753424657,0.6866595448749312,0.776954103910889,version 2,second look,never seen
+fake,bark,en,clean,105,43,0.4095238095238095,0.320277462985214,0.5051569297469766,version 2,second look,never seen
+fake,chatterbox,en,clean,90,58,0.6444444444444445,0.54149980634835,0.7355628183298311,version 2,second look,never seen
+real,fleurs,ru,clean,388,8,0.020618556701030927,0.010483836320753536,0.04015295160579637,version 2,second look,seen in training
+fake,say,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,piper,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,mms,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,bark,ru,clean,95,61,0.6421052631578947,0.5419132697778168,0.7312510658865188,version 2,second look,never seen
+fake,chatterbox,ru,clean,90,57,0.6333333333333333,0.530221128924694,0.7255289861628577,version 2,second look,never seen
+fake,vosk,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 2,second look,never seen
+real,librispeech,en,clean,300,11,0.03666666666666667,0.02059509146818067,0.06445448699638771,version 2,second look,seen in training
+real,golos,ru,clean,300,17,0.056666666666666664,0.03567717591318777,0.08886666535147117,version 2,second look,seen in training
+real,voxpopuli,en,clean,200,4,0.02,0.007804300176394188,0.050287865505193874,version 2,second look,seen in training
+real,rulibrispeech,ru,clean,200,1,0.005,0.0008831459893662054,0.02777439986977148,version 2,second look,seen in training
+real,minds,en,clean,200,6,0.03,0.013820125830748327,0.06389511973247333,version 2,second look,never seen
+real,minds,ru,clean,200,5,0.025,0.010724561470787711,0.05717914415161715,version 2,second look,never seen
+real,ami,en,clean,100,0,0.0,0.0,0.03699480747600191,version 2,second look,never seen
+real,podlodka,ru,clean,50,2,0.04,0.011038652660826577,0.13460337877954667,version 2,second look,never seen
+real,fleurs,en,phone,325,2,0.006153846153846154,0.0016891965982779571,0.022156934791424554,version 2,second look,seen in training
+fake,say,en,phone,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,version 2,second look,seen in training
+fake,piper,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,version 2,second look,seen in training
+fake,mms,en,phone,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,version 2,second look,seen in training
+fake,kokoro,en,phone,365,196,0.536986301369863,0.48571170575360473,0.5874904493178404,version 2,second look,never seen
+fake,bark,en,phone,105,38,0.3619047619047619,0.27636595500808664,0.45719180231999373,version 2,second look,never seen
+fake,chatterbox,en,phone,90,61,0.6777777777777778,0.5756664407220551,0.765333712728014,version 2,second look,never seen
+real,fleurs,ru,phone,388,15,0.03865979381443299,0.023565836387486452,0.06279967457408576,version 2,second look,seen in training
+fake,say,ru,phone,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,piper,ru,phone,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,mms,ru,phone,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,bark,ru,phone,95,69,0.7263157894736842,0.629183776326649,0.8058557212128485,version 2,second look,never seen
+fake,chatterbox,ru,phone,90,58,0.6444444444444445,0.54149980634835,0.7355628183298311,version 2,second look,never seen
+fake,vosk,ru,phone,315,315,1.0,0.9879513840101166,1.0,version 2,second look,never seen
+real,librispeech,en,phone,300,16,0.05333333333333334,0.03309162538404202,0.08486983874726851,version 2,second look,seen in training
+real,golos,ru,phone,300,26,0.08666666666666667,0.05982848995477098,0.12395674551002385,version 2,second look,seen in training
+real,voxpopuli,en,phone,200,4,0.02,0.007804300176394188,0.050287865505193874,version 2,second look,seen in training
+real,rulibrispeech,ru,phone,200,6,0.03,0.013820125830748327,0.06389511973247333,version 2,second look,seen in training
+real,minds,en,phone,200,10,0.05,0.027382349028644986,0.08957905629784384,version 2,second look,never seen
+real,minds,ru,phone,200,11,0.055,0.030985020801370097,0.0957879244659355,version 2,second look,never seen
+real,ami,en,phone,100,0,0.0,0.0,0.03699480747600191,version 2,second look,never seen
+real,podlodka,ru,phone,50,8,0.16,0.08337321362087696,0.2851448096176598,version 2,second look,never seen
+real,fleurs,en,noisy,325,0,0.0,0.0,0.011682220254371706,version 2,second look,seen in training
+fake,say,en,noisy,365,360,0.9863013698630136,0.9683377442289595,0.9941350354141175,version 2,second look,seen in training
+fake,piper,en,noisy,365,323,0.8849315068493151,0.8481101162818153,0.9137345346469302,version 2,second look,seen in training
+fake,mms,en,noisy,365,357,0.9780821917808219,0.9573525297729085,0.9888531042987362,version 2,second look,seen in training
+fake,kokoro,en,noisy,365,20,0.0547945205479452,0.03574747162361153,0.08311547659047275,version 2,second look,never seen
+fake,bark,en,noisy,105,8,0.0761904761904762,0.03911018406047029,0.14318776084294899,version 2,second look,never seen
+fake,chatterbox,en,noisy,90,1,0.011111111111111112,0.00196403353551235,0.06028554447679775,version 2,second look,never seen
+real,fleurs,ru,noisy,388,0,0.0,0.0,0.00980396160081012,version 2,second look,seen in training
+fake,say,ru,noisy,315,288,0.9142857142857143,0.878163230341231,0.9404250592671513,version 2,second look,seen in training
+fake,piper,ru,noisy,315,292,0.926984126984127,0.8928228089910348,0.9508563094176046,version 2,second look,seen in training
+fake,mms,ru,noisy,315,309,0.9809523809523809,0.959073233404014,0.9912419074057173,version 2,second look,seen in training
+fake,bark,ru,noisy,95,8,0.08421052631578947,0.04328759724614253,0.1574537909952457,version 2,second look,never seen
+fake,chatterbox,ru,noisy,90,2,0.022222222222222223,0.006115313794863603,0.07744677380807581,version 2,second look,never seen
+fake,vosk,ru,noisy,315,159,0.5047619047619047,0.4498238955819148,0.5595851652181815,version 2,second look,never seen
+real,librispeech,en,noisy,300,0,0.0,0.0,0.012643429997735661,version 2,second look,seen in training
+real,golos,ru,noisy,300,2,0.006666666666666667,0.0018301100329710784,0.023978074231461442,version 2,second look,seen in training
+real,voxpopuli,en,noisy,200,2,0.01,0.0027466006037749346,0.03572248519617954,version 2,second look,seen in training
+real,rulibrispeech,ru,noisy,200,0,0.0,0.0,0.018846005918320894,version 2,second look,seen in training
+real,minds,en,noisy,200,2,0.01,0.0027466006037749346,0.03572248519617954,version 2,second look,never seen
+real,minds,ru,noisy,200,0,0.0,0.0,0.018846005918320894,version 2,second look,never seen
+real,ami,en,noisy,100,0,0.0,0.0,0.03699480747600191,version 2,second look,never seen
+real,podlodka,ru,noisy,50,0,0.0,0.0,0.07135003417431873,version 2,second look,never seen
+real,fleurs,en,gated,325,0,0.0,0.0,0.011682220254371706,version 2,second look,seen in training
+fake,say,en,gated,365,365,1.0,0.9895846889287975,0.9999999999999999,version 2,second look,seen in training
+fake,piper,en,gated,365,365,1.0,0.9895846889287975,0.9999999999999999,version 2,second look,seen in training
+fake,mms,en,gated,365,365,1.0,0.9895846889287975,0.9999999999999999,version 2,second look,seen in training
+fake,kokoro,en,gated,365,211,0.5780821917808219,0.5268607201437916,0.627677162784815,version 2,second look,never seen
+fake,bark,en,gated,105,40,0.38095238095238093,0.293823651390926,0.4764847600987984,version 2,second look,never seen
+fake,chatterbox,en,gated,90,51,0.5666666666666667,0.4636391101764269,0.664235947367349,version 2,second look,never seen
+real,fleurs,ru,gated,388,10,0.02577319587628866,0.014058418613664948,0.0467865758943199,version 2,second look,seen in training
+fake,say,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,piper,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,mms,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 2,second look,seen in training
+fake,bark,ru,gated,95,52,0.5473684210526316,0.4473808701274312,0.6436739084273474,version 2,second look,never seen
+fake,chatterbox,ru,gated,90,48,0.5333333333333333,0.4310200470971506,0.6329174816747374,version 2,second look,never seen
+fake,vosk,ru,gated,315,314,0.9968253968253968,0.9822392777795256,0.9994393990305269,version 2,second look,never seen
+real,librispeech,en,gated,300,12,0.04,0.02302709213793877,0.06860486345997804,version 2,second look,seen in training
+real,golos,ru,gated,300,15,0.05,0.030531367290852585,0.08084771970710952,version 2,second look,seen in training
+real,voxpopuli,en,gated,200,5,0.025,0.010724561470787711,0.05717914415161715,version 2,second look,seen in training
+real,rulibrispeech,ru,gated,200,1,0.005,0.0008831459893662054,0.02777439986977148,version 2,second look,seen in training
+real,minds,en,gated,200,10,0.05,0.027382349028644986,0.08957905629784384,version 2,second look,never seen
+real,minds,ru,gated,200,8,0.04,0.02040538715065641,0.07693293829419882,version 2,second look,never seen
+real,ami,en,gated,100,0,0.0,0.0,0.03699480747600191,version 2,second look,never seen
+real,podlodka,ru,gated,50,6,0.12,0.05617523710624646,0.23805078886623582,version 2,second look,never seen
+real,ALL,all,clean,1713,41,0.023934617629889084,0.01769171868359354,0.0323080017332463,version 2,second look,seen in training
+fake,ALL,all,clean,2040,2039,0.9995098039215686,0.9972283875315882,0.9999134653399846,version 2,second look,seen in training
+fake,ALL,all,clean,1060,802,0.7566037735849057,0.7298730471289749,0.7814812747926345,version 2,second look,never seen
+real,ALL,all,clean,550,13,0.023636363636363636,0.01386420390765728,0.040016905781466834,version 2,second look,never seen
+real,ALL,all,phone,1713,69,0.040280210157618214,0.031951605165900204,0.05066615060143441,version 2,second look,seen in training
+fake,ALL,all,phone,2040,2038,0.9990196078431373,0.9964321979043057,0.9997311055532617,version 2,second look,seen in training
+fake,ALL,all,phone,1060,737,0.6952830188679245,0.6669091986764056,0.7222464801389369,version 2,second look,never seen
+real,ALL,all,phone,550,29,0.05272727272727273,0.03695981047033943,0.07469955206219694,version 2,second look,never seen
+real,ALL,all,noisy,1713,4,0.002335084646818447,0.0009084172691452641,0.005988899291683643,version 2,second look,seen in training
+fake,ALL,all,noisy,2040,1929,0.9455882352941176,0.9348811156143453,0.9546203017166259,version 2,second look,seen in training
+fake,ALL,all,noisy,1060,198,0.18679245283018867,0.16447557575364932,0.21137135484203332,version 2,second look,never seen
+real,ALL,all,noisy,550,2,0.0036363636363636364,0.0009977682574326173,0.01316079260184556,version 2,second look,never seen
+real,ALL,all,gated,1713,43,0.025102159953298307,0.018688978721832714,0.03364060136289962,version 2,second look,seen in training
+fake,ALL,all,gated,2040,2040,1.0,0.9981204022855783,1.0,version 2,second look,seen in training
+fake,ALL,all,gated,1060,716,0.6754716981132075,0.6466958896513816,0.7029802275450129,version 2,second look,never seen
+real,ALL,all,gated,550,24,0.04363636363636364,0.02949614858745383,0.06410750993151623,version 2,second look,never seen
+real,own2,en,clean,15,3,0.2,0.07047420643610414,0.4518593533465045,version 3,fresh,
+fake,chatterbox_clone2,en,clean,15,4,0.26666666666666666,0.1089727610318281,0.5195088965768675,version 3,fresh,
+real,own2,ru,clean,15,4,0.26666666666666666,0.1089727610318281,0.5195088965768675,version 3,fresh,
+fake,chatterbox_clone2,ru,clean,15,5,0.3333333333333333,0.15176100694691236,0.5828687484878701,version 3,fresh,
+real,own2,en,phone,15,4,0.26666666666666666,0.1089727610318281,0.5195088965768675,version 3,fresh,
+fake,chatterbox_clone2,en,phone,15,7,0.4666666666666667,0.24809225259746442,0.6988336984894921,version 3,fresh,
+real,own2,ru,phone,15,6,0.4,0.19824228082594664,0.642535572434923,version 3,fresh,
+fake,chatterbox_clone2,ru,phone,15,7,0.4666666666666667,0.24809225259746442,0.6988336984894921,version 3,fresh,
+real,own2,en,noisy,15,4,0.26666666666666666,0.1089727610318281,0.5195088965768675,version 3,fresh,
+fake,chatterbox_clone2,en,noisy,15,6,0.4,0.19824228082594664,0.642535572434923,version 3,fresh,
+real,own2,ru,noisy,15,8,0.5333333333333333,0.3011663015105079,0.7519077474025355,version 3,fresh,
+fake,chatterbox_clone2,ru,noisy,15,7,0.4666666666666667,0.24809225259746442,0.6988336984894921,version 3,fresh,
+real,own2,en,gated,15,3,0.2,0.07047420643610414,0.4518593533465045,version 3,fresh,
+fake,chatterbox_clone2,en,gated,15,3,0.2,0.07047420643610414,0.4518593533465045,version 3,fresh,
+real,own2,ru,gated,15,6,0.4,0.19824228082594664,0.642535572434923,version 3,fresh,
+fake,chatterbox_clone2,ru,gated,15,5,0.3333333333333333,0.15176100694691236,0.5828687484878701,version 3,fresh,
+real,own2,all,clean,30,7,0.23333333333333334,0.11792239210501232,0.40928672330324267,version 3,fresh,
+fake,chatterbox_clone2,all,clean,30,9,0.3,0.16664562643958933,0.4787612101166018,version 3,fresh,
+real,own2,all,phone,30,10,0.3333333333333333,0.19230295526846194,0.5122027418616973,version 3,fresh,
+fake,chatterbox_clone2,all,phone,30,14,0.4666666666666667,0.30232127224128236,0.6385798671847496,version 3,fresh,
+real,own2,all,noisy,30,12,0.4,0.24590394326083403,0.5767994750172616,version 3,fresh,
+fake,chatterbox_clone2,all,noisy,30,13,0.43333333333333335,0.2737723743061511,0.6080299045459127,version 3,fresh,
+real,own2,all,gated,30,9,0.3,0.16664562643958933,0.4787612101166018,version 3,fresh,
+fake,chatterbox_clone2,all,gated,30,8,0.26666666666666666,0.14182495553910618,0.4444830204431169,version 3,fresh,
+real,fleurs,en,clean,325,1,0.003076923076923077,0.0005433451436958493,0.017220830678341265,version 3,second look,seen in training
+fake,say,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,piper,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,mms,en,clean,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,kokoro,en,clean,365,171,0.4684931506849315,0.41789394069995894,0.5197486679428838,version 3,second look,never seen
+fake,bark,en,clean,105,30,0.2857142857142857,0.20806999151103067,0.3784851491704734,version 3,second look,never seen
+fake,chatterbox,en,clean,90,40,0.4444444444444444,0.3461548633017185,0.5472825887451348,version 3,second look,never seen
+real,fleurs,ru,clean,388,10,0.02577319587628866,0.014058418613664948,0.0467865758943199,version 3,second look,seen in training
+fake,say,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,piper,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,mms,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,bark,ru,clean,95,59,0.6210526315789474,0.5205920587802135,0.7121034864153317,version 3,second look,never seen
+fake,chatterbox,ru,clean,90,23,0.25555555555555554,0.17674636135607297,0.35437842765008193,version 3,second look,never seen
+fake,vosk,ru,clean,315,315,1.0,0.9879513840101166,1.0,version 3,second look,never seen
+real,librispeech,en,clean,300,20,0.06666666666666667,0.04356717679698387,0.10072379586772039,version 3,second look,seen in training
+real,golos,ru,clean,300,22,0.07333333333333333,0.048923631132474436,0.10853209579892667,version 3,second look,seen in training
+real,voxpopuli,en,clean,200,4,0.02,0.007804300176394188,0.050287865505193874,version 3,second look,seen in training
+real,rulibrispeech,ru,clean,200,2,0.01,0.0027466006037749346,0.03572248519617954,version 3,second look,seen in training
+real,minds,en,clean,200,6,0.03,0.013820125830748327,0.06389511973247333,version 3,second look,never seen
+real,minds,ru,clean,200,1,0.005,0.0008831459893662054,0.02777439986977148,version 3,second look,never seen
+real,ami,en,clean,100,0,0.0,0.0,0.03699480747600191,version 3,second look,never seen
+real,podlodka,ru,clean,50,5,0.1,0.04347512399157111,0.2136049033478839,version 3,second look,never seen
+real,fleurs,en,phone,325,3,0.009230769230769232,0.003144106729421007,0.026783980227946914,version 3,second look,seen in training
+fake,say,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,piper,en,phone,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,mms,en,phone,365,364,0.9972602739726028,0.9846460873645747,0.9995162197070787,version 3,second look,seen in training
+fake,kokoro,en,phone,365,134,0.36712328767123287,0.31929496445261896,0.41771951547589226,version 3,second look,never seen
+fake,bark,en,phone,105,31,0.29523809523809524,0.21646394945677827,0.3884665183055478,version 3,second look,never seen
+fake,chatterbox,en,phone,90,45,0.5,0.39883544540986604,0.601164554590134,version 3,second look,never seen
+real,fleurs,ru,phone,388,8,0.020618556701030927,0.010483836320753536,0.04015295160579637,version 3,second look,seen in training
+fake,say,ru,phone,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,piper,ru,phone,315,314,0.9968253968253968,0.9822392777795256,0.9994393990305269,version 3,second look,seen in training
+fake,mms,ru,phone,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,bark,ru,phone,95,68,0.7157894736842105,0.6180880088754301,0.7967170934296721,version 3,second look,never seen
+fake,chatterbox,ru,phone,90,28,0.3111111111111111,0.22485715147181132,0.4128301854874903,version 3,second look,never seen
+fake,vosk,ru,phone,315,313,0.9936507936507937,0.9771488448435929,0.9982571247663953,version 3,second look,never seen
+real,librispeech,en,phone,300,17,0.056666666666666664,0.03567717591318777,0.08886666535147117,version 3,second look,seen in training
+real,golos,ru,phone,300,22,0.07333333333333333,0.048923631132474436,0.10853209579892667,version 3,second look,seen in training
+real,voxpopuli,en,phone,200,6,0.03,0.013820125830748327,0.06389511973247333,version 3,second look,seen in training
+real,rulibrispeech,ru,phone,200,13,0.065,0.03837598764975976,0.10802003749917945,version 3,second look,seen in training
+real,minds,en,phone,200,8,0.04,0.02040538715065641,0.07693293829419882,version 3,second look,never seen
+real,minds,ru,phone,200,8,0.04,0.02040538715065641,0.07693293829419882,version 3,second look,never seen
+real,ami,en,phone,100,1,0.01,0.0017673865655472645,0.0544875247609346,version 3,second look,never seen
+real,podlodka,ru,phone,50,8,0.16,0.08337321362087696,0.2851448096176598,version 3,second look,never seen
+real,fleurs,en,noisy,325,3,0.009230769230769232,0.003144106729421007,0.026783980227946914,version 3,second look,seen in training
+fake,say,en,noisy,365,363,0.9945205479452055,0.9802438454941472,0.9984960797203623,version 3,second look,seen in training
+fake,piper,en,noisy,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,mms,en,noisy,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,kokoro,en,noisy,365,134,0.36712328767123287,0.31929496445261896,0.41771951547589226,version 3,second look,never seen
+fake,bark,en,noisy,105,35,0.3333333333333333,0.2504577293800206,0.42797404670559364,version 3,second look,never seen
+fake,chatterbox,en,noisy,90,46,0.5111111111111111,0.40951565938168355,0.6117968502089457,version 3,second look,never seen
+real,fleurs,ru,noisy,388,14,0.03608247422680412,0.02161299193061618,0.05964841574023856,version 3,second look,seen in training
+fake,say,ru,noisy,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,piper,ru,noisy,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,mms,ru,noisy,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,bark,ru,noisy,95,55,0.5789473684210527,0.4784945348956803,0.673263429362284,version 3,second look,never seen
+fake,chatterbox,ru,noisy,90,33,0.36666666666666664,0.2744710138371421,0.4697788710753059,version 3,second look,never seen
+fake,vosk,ru,noisy,315,311,0.9873015873015873,0.967809420792507,0.9950511344173529,version 3,second look,never seen
+real,librispeech,en,noisy,300,30,0.1,0.07094746564722294,0.1391672783509656,version 3,second look,seen in training
+real,golos,ru,noisy,300,20,0.06666666666666667,0.04356717679698387,0.10072379586772039,version 3,second look,seen in training
+real,voxpopuli,en,noisy,200,8,0.04,0.02040538715065641,0.07693293829419882,version 3,second look,seen in training
+real,rulibrispeech,ru,noisy,200,5,0.025,0.010724561470787711,0.05717914415161715,version 3,second look,seen in training
+real,minds,en,noisy,200,10,0.05,0.027382349028644986,0.08957905629784384,version 3,second look,never seen
+real,minds,ru,noisy,200,7,0.035,0.017055324637357105,0.07047146086668134,version 3,second look,never seen
+real,ami,en,noisy,100,0,0.0,0.0,0.03699480747600191,version 3,second look,never seen
+real,podlodka,ru,noisy,50,5,0.1,0.04347512399157111,0.2136049033478839,version 3,second look,never seen
+real,fleurs,en,gated,325,1,0.003076923076923077,0.0005433451436958493,0.017220830678341265,version 3,second look,seen in training
+fake,say,en,gated,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,piper,en,gated,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,mms,en,gated,365,365,1.0,0.9895846889287975,0.9999999999999999,version 3,second look,seen in training
+fake,kokoro,en,gated,365,137,0.37534246575342467,0.3272073753058892,0.42607425019405437,version 3,second look,never seen
+fake,bark,en,gated,105,26,0.24761904761904763,0.17494869705401503,0.33810513530420083,version 3,second look,never seen
+fake,chatterbox,en,gated,90,37,0.4111111111111111,0.3151304105521081,0.5143695127228572,version 3,second look,never seen
+real,fleurs,ru,gated,388,11,0.028350515463917526,0.015902668536759243,0.050046429261943096,version 3,second look,seen in training
+fake,say,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,piper,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,mms,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 3,second look,seen in training
+fake,bark,ru,gated,95,53,0.5578947368421052,0.45770915955965324,0.6535800142295204,version 3,second look,never seen
+fake,chatterbox,ru,gated,90,22,0.24444444444444444,0.16732663395366268,0.3424856454618631,version 3,second look,never seen
+fake,vosk,ru,gated,315,315,1.0,0.9879513840101166,1.0,version 3,second look,never seen
+real,librispeech,en,gated,300,20,0.06666666666666667,0.04356717679698387,0.10072379586772039,version 3,second look,seen in training
+real,golos,ru,gated,300,20,0.06666666666666667,0.04356717679698387,0.10072379586772039,version 3,second look,seen in training
+real,voxpopuli,en,gated,200,4,0.02,0.007804300176394188,0.050287865505193874,version 3,second look,seen in training
+real,rulibrispeech,ru,gated,200,2,0.01,0.0027466006037749346,0.03572248519617954,version 3,second look,seen in training
+real,minds,en,gated,200,6,0.03,0.013820125830748327,0.06389511973247333,version 3,second look,never seen
+real,minds,ru,gated,200,2,0.01,0.0027466006037749346,0.03572248519617954,version 3,second look,never seen
+real,ami,en,gated,100,0,0.0,0.0,0.03699480747600191,version 3,second look,never seen
+real,podlodka,ru,gated,50,5,0.1,0.04347512399157111,0.2136049033478839,version 3,second look,never seen
+real,ALL,all,clean,1713,59,0.034442498540572096,0.026795200499639703,0.04417325692823249,version 3,second look,seen in training
+fake,ALL,all,clean,2040,2040,1.0,0.9981204022855783,1.0,version 3,second look,seen in training
+fake,ALL,all,clean,1060,638,0.6018867924528302,0.5721009329592154,0.6309368125096589,version 3,second look,never seen
+real,ALL,all,clean,550,12,0.02181818181818182,0.012524025584646733,0.03774594330176412,version 3,second look,never seen
+real,ALL,all,phone,1713,69,0.040280210157618214,0.031951605165900204,0.05066615060143441,version 3,second look,seen in training
+fake,ALL,all,phone,2040,2038,0.9990196078431373,0.9964321979043057,0.9997311055532617,version 3,second look,seen in training
+fake,ALL,all,phone,1060,619,0.5839622641509434,0.5540381135620139,0.6132800285373362,version 3,second look,never seen
+real,ALL,all,phone,550,25,0.045454545454545456,0.030975191778882704,0.0662396075428006,version 3,second look,never seen
+real,ALL,all,noisy,1713,80,0.046701692936368944,0.03768364060981488,0.057748343330928396,version 3,second look,seen in training
+fake,ALL,all,noisy,2040,2038,0.9990196078431373,0.9964321979043057,0.9997311055532617,version 3,second look,seen in training
+fake,ALL,all,noisy,1060,614,0.5792452830188679,0.5492914463777995,0.6086268000979916,version 3,second look,never seen
+real,ALL,all,noisy,550,22,0.04,0.026561388526345354,0.05981998838719816,version 3,second look,never seen
+real,ALL,all,gated,1713,58,0.033858727378867484,0.026282894502836517,0.04352063309108944,version 3,second look,seen in training
+fake,ALL,all,gated,2040,2040,1.0,0.9981204022855783,1.0,version 3,second look,seen in training
+fake,ALL,all,gated,1060,590,0.5566037735849056,0.5265457650395996,0.5862529824431083,version 3,second look,never seen
+real,ALL,all,gated,550,13,0.023636363636363636,0.01386420390765728,0.040016905781466834,version 3,second look,never seen

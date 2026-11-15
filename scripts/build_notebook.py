@@ -33,7 +33,9 @@ md("""
 
 CloneCheck helps a grandparent who gets a call from "a grandchild in trouble" by taking a few seconds of the caller's voice and saying whether it sounds like a real person or an AI-generated voice.
 
-This notebook shows the data, trains the detector, and reports every result, including the ones that went badly. It runs in about a minute, because the slow part (turning 14,315 audio clips into numbers) was done in advance and saved in the repository.
+**In short:** it catches every AI voice from the generators it trained on, 70% from generators it never met, and only 30% of AI copies of my own voice. This notebook shows the data, trains each version of the detector, and reports every result, including the ones that went badly.
+
+It runs in about a minute, because the slow part (turning 14,375 audio clips into numbers) was done in advance and saved in the repository.
 """)
 
 md("## 0. Setup")
@@ -91,7 +93,8 @@ features = detect.load_features(layers=[10])
 clips = detect.load_clips()
 train_clips = clips[clips["split"] == "train"]
 dev_clips = clips[clips["split"] == "dev"]
-test_clips = clips[clips["split"] == "test"]
+fresh = clips[clips["text_source"] == "own2"]            # my second recording, added later (section 7)
+test_clips = clips[(clips["split"] == "test") & (clips["text_source"] != "own2")]
 print(len(train_clips), "train clips,", len(dev_clips), "dev clips,", len(test_clips), "test clips")
 print("numbers per clip:", detect.matrix(features, train_clips[:1], "clean", "xlsr", 10).shape[1])
 """)
@@ -190,18 +193,65 @@ So part of what CloneCheck learned is **"a clean recording is AI, background noi
 """)
 
 md("""
-## 7. Summary
+## 7. Version 3: training the shortcut away, and a fresh test
+
+Version 3 trains on every clip four times: as recorded, through the phone line, and twice with a random mix of background noise, room echo, noise suppression and phone line (`clonecheck/audio.py`, `random_recording`). Real and fake clips get the same treatment, so "is it clean?" can no longer separate them.
+
+It was chosen on dev data, with my first recordings now counted as dev, and frozen before the two checks below.
+""")
+code("""
+features_all = detect.load_features(layers=[10], conditions=["clean", "phone", "noisy", "gated", "aug1", "aug2"])
+version3 = detect.train(features_all, train_clips, "xlsr", 10, conditions=("clean", "phone", "aug1", "aug2"))
+detect.set_threshold(version3, features_all, real_dev, ("clean", "phone", "noisy", "gated"))
+versions = {"Version 2": clonecheck, "Version 3": version3}
+""")
+md("""
+### Check 1: the test set again, under four listening conditions
+
+This is a second look at clips version 2 was already scored on (my own recordings are left out), so it is weaker evidence than the first test.
+""")
+code("""
+second_look = test_clips[test_clips["text_source"] != "own"]
+report.by_condition(versions, features_all, second_look)
+""")
+md("""
+Version 2 collapses when background noise is added: 19% of new-generator fakes caught. Version 3 catches about the same share in every condition, so the shortcut is gone. But the share is lower. Part of version 2's 70% was the shortcut.
+""")
+md("""
+### Check 2: a recording nothing was tuned on
+
+I read the same 30 sentences into a voice memo on my phone and made a new AI copy of my voice from that memo. None of this was used to choose anything.
+""")
+code("report.own_voice(versions, features_all, fresh)")
+md("""
+Neither version can tell me from a copy of me. Version 2 calls almost everything in this recording real. Version 3 is more suspicious of both: a few more copies caught, and the real me accused five times as often. We do not count version 3 as a fix.
+
+For comparison, the first recording session (laptop, browser):
+""")
+code('report.own_voice(versions, features_all, clips[clips["text_source"] == "own"])')
+md("""
+Version 2 flagged 16 of 30 of my laptop recordings over the phone line and only 2 of 30 of my phone recordings. So the first failure was about the recording, not about my voice.
+""")
+
+md("""
+## 8. Summary
+
+| Situation (version 2, phone line) | AI voices caught |
+|---|---|
+| Generators it trained on | 100% |
+| Generators it never met | 70% |
+| A copy of my own voice, made from a phone memo | 30% |
 
 | | AI voices caught (new generators, phone line) | Real people wrongly flagged (new datasets, phone line) |
 |---|---|---|
 | Always say "real" | 0% | 0% |
 | Simple audio features | 53% | 19% |
 | Version 1 (one real dataset) | 97% | 53% |
-| **CloneCheck** | **70%** | **8%** |
+| **CloneCheck (version 2)** | **70%** | **8%** |
 
-**The main takeaway:** a voice-clone detector can score 100% on its own test and still be useless, because it learns where its recordings came from instead of what a human sounds like. Holding out whole generators and whole datasets exposed that twice: first for datasets (version 1), then for recording conditions (my own microphone).
+**The main takeaway:** the further a call is from what the detector trained on, the less it catches. A test that uses the same generators and datasets as training shows 100% and hides this. Holding out whole generators, whole datasets and finally my own recordings exposed it three times: version 1 learned its dataset, version 2 learned "clean means AI", and neither version 2 nor version 3 can tell my voice from a copy of it.
 
-**What it would take to trust it:** training that cannot use "how clean is the recording?" as a clue, a test on real phone calls, and many more voices. Until then the safest advice does not need AI: hang up and call back on a number you already have.
+**The honest answer to "is that really your grandson?"** is that this tool cannot tell you yet. Until one can, the safest advice does not need AI: hang up and call back on a number you already have, or agree a family code word.
 """)
 
 notebook = nbf.v4.new_notebook(cells=cells, metadata={

@@ -47,7 +47,8 @@ def main() -> None:
               for r in clips.itertuples()])
     train_clips = clips[clips["split"] == "train"]
     real_dev = clips[(clips["split"] == "dev") & (clips["label"] == "real")]
-    test = clips[clips["split"] == "test"]
+    # my second recording session was added after this test and is scored in evaluate_v3.py
+    test = clips[(clips["split"] == "test") & (clips["text_source"] != "own2")]
     print(f"train {len(train_clips)}, test {len(test)} clips "
           f"({(test.label == 'real').sum()} real, {(test.label == 'fake').sum()} fake)\n")
 

@@ -2,7 +2,7 @@
 
 Run after the test. It takes my 30 real recordings and the 30 AI copies,
 adds steady background hiss at two loudness levels, and scores each version
-with the final detector (models/detector.npz). Results go to
+with the detector from the main test (version 2, models/detector_v2.npz). Results go to
 results/own_voice_hiss.csv.
 
 Run:  python scripts/hiss_experiment.py
@@ -21,11 +21,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from clonecheck.audio import add_noise, load, phone_line, prepare
 from clonecheck.config import RESULTS, ROOT
 from clonecheck.detect import load_clips
-from clonecheck.predict import _load_detector, probability_fake
+from clonecheck.predict import MODEL_FILE_V2, _load_detector, probability_fake
 
 
 def main() -> None:
-    level = _load_detector()["threshold"]
+    level = _load_detector(MODEL_FILE_V2)["threshold"]     # version 2, the one that was tested
     clips = load_clips()
     rng = np.random.default_rng(0)
     versions = {
@@ -40,7 +40,7 @@ def main() -> None:
                         "AI copy of my voice": clips[clips["engine"] == "chatterbox_clone"]}.items():
         waves = [(r.lang, prepare(load(ROOT / r.path))) for r in group.itertuples()]
         for version, change in versions.items():
-            scores = np.array([probability_fake(change(w)) for _, w in waves])
+            scores = np.array([probability_fake(change(w), MODEL_FILE_V2) for _, w in waves])
             langs = np.array([lang for lang, _ in waves])
             rows.append({"clips": name, "version": version,
                          "flagged, English (of 15)": int((scores[langs == "en"] > level).sum()),

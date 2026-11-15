@@ -196,3 +196,37 @@ def compare(methods: dict, features: dict, clips: pd.DataFrame, condition: str =
             row[title] = f"{part['share']:.0%} ({int(part['flagged'])} of {int(part['clips'])})"
         rows.append(row)
     return pd.DataFrame(rows).set_index("Method")
+
+
+def by_condition(methods: dict, features: dict, clips: pd.DataFrame,
+                 conditions=("clean", "phone", "noisy", "gated")) -> pd.DataFrame:
+    """New generators caught and new real voices flagged, under each listening condition."""
+    from .detect import report as score
+    names = {"clean": "Clean", "phone": "Phone line", "noisy": "Background noise",
+             "gated": "Noise suppression"}
+    rows = []
+    for name, detector in methods.items():
+        table = score(detector, features, _with_roles(clips), ["label", "met"], conditions)
+        table = table[table["met"] == "never trained on"]
+        for label, title in [("fake", "AI voices caught (new generators)"),
+                             ("real", "Real people flagged (new datasets)")]:
+            part = table[table["label"] == label].set_index("condition")
+            rows.append({"": title, "Method": name,
+                         **{names[c]: f"{part.loc[c, 'share']:.0%} ({int(part.loc[c, 'flagged'])} of {int(part.loc[c, 'clips'])})"
+                            for c in conditions}})
+    return pd.DataFrame(rows).set_index(["", "Method"]).sort_index(level=0, sort_remaining=False)
+
+
+def own_voice(methods: dict, features: dict, clips: pd.DataFrame,
+              conditions=("clean", "phone")) -> pd.DataFrame:
+    """My real voice wrongly flagged, and AI copies of it caught, out of the clips given."""
+    from .detect import report as score
+    rows = []
+    for name, detector in methods.items():
+        table = score(detector, features, clips, ["label"], conditions)
+        for c in conditions:
+            part = table[table["condition"] == c].set_index("label")
+            rows.append({"Method": name, "Heard": {"clean": "as recorded", "phone": "phone line"}[c],
+                         "My real voice wrongly flagged": f"{int(part.loc['real', 'flagged'])} of {int(part.loc['real', 'clips'])}",
+                         "AI copy of my voice caught": f"{int(part.loc['fake', 'flagged'])} of {int(part.loc['fake', 'clips'])}"})
+    return pd.DataFrame(rows).set_index(["Method", "Heard"])
