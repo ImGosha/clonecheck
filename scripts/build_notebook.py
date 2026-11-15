@@ -57,7 +57,7 @@ pd.set_option("display.max_colwidth", 100)
 md("""
 ## 1. The data
 
-Real voices come from ten public datasets and my own recordings. Fake voices come from eight AI voice generators, which read out the same texts as the real clips.
+Real voices come from ten public datasets and my own recordings. Fake voices come from eight AI voice generators, which read out the same texts as the real clips. The two "experiment" columns are 1,060 clips added later for version 4 (section 8).
 
 The key design choice is the **role** column. A generator or dataset marked `train` is one the detector learns from. `dev` ones are never trained on and were used to choose settings. `test` ones were never trained on and never used to choose anything: they were scored once, at the end.
 """)
@@ -251,7 +251,35 @@ Version 2 flagged 16 of 30 of my laptop recordings over the phone line and only 
 """)
 
 md("""
-## 8. Summary
+## 8. Version 4: train on one cloning tool, test on another
+
+The training generators are ordinary text-to-speech; a scammer uses a cloning tool. Version 4 is version 3 plus 800 extra training clips in which one cloning tool (Chatterbox) copies the voices of real training speakers. Nothing else changes.
+
+The test is a second cloning tool the detector has never heard, XTTS: 200 copies of speakers from the never-seen datasets, and 60 copies of my own voice. The plan was committed before any of these clips was generated (`results/chosen_v4.json`).
+""")
+code("""
+cloned = clips[clips["split"] == "train_clones"]
+version4 = detect.train(features_all, pd.concat([train_clips, cloned]), "xlsr", 10, conditions=("clean", "phone", "aug1", "aug2"))
+detect.set_threshold(version4, features_all, real_dev, ("clean", "phone", "noisy", "gated"))
+print(len(cloned), "extra training clips")
+report.clone_experiment({"Version 3": version3, "Version 4": version4}, features_all, clips[clips["split"].isin(["test", "test_clones"])])
+""")
+md("""
+Over the phone line, version 4 catches 81% of the new tool's copies of new speakers; version 3 caught 44%. Training on one cloning tool carries over to another.
+
+It has a price. Real people from new datasets are wrongly flagged 12% of the time, up from 5%, and my own real recordings 30 times out of 60, up from 20. So is version 4 a better detector, or did the bar for raising the alarm just get lower? Two checks that do not depend on the alarm level. They were added after seeing the table above, so they are weaker evidence:
+""")
+code("report.clone_second_look()")
+md("""
+Both things are true for strangers' voices. With false alarms held equal, the catch rate rises from 48% to 56%: a real gain, but much smaller than 44% to 81%. About half of the jump came from a lower bar.
+
+For my own voice nothing improved. Version 4 ranks my recordings and the copies of them no better than version 3 did (0.74 against 0.73), and it flags the real me half the time.
+
+One more thing to know: the first run of this experiment lost a generator process and trained on 586 of the 800 clips. That result is kept in `results/v4_partial586.txt`; it came out the same way (164 of 200 and 49 of 60 caught over the phone line).
+""")
+
+md("""
+## 9. Summary
 
 | Situation (version 2, phone line) | AI voices caught |
 |---|---|
@@ -266,7 +294,7 @@ md("""
 | Version 1 (one real dataset) | 97% | 53% |
 | **CloneCheck (version 2)** | **70%** | **8%** |
 
-**The main takeaway:** the further a call is from what the detector trained on, the less it catches. A test that uses the same generators and datasets as training shows 100% and hides this. Holding out whole generators, whole datasets and finally my own recordings exposed it three times: version 1 learned its dataset, version 2 learned "clean means AI", and neither version 2 nor version 3 can tell my voice from a copy of it.
+**The main takeaway:** the further a call is from what the detector trained on, the less it catches. A test that uses the same generators and datasets as training shows 100% and hides this. Holding out whole generators, whole datasets and finally my own recordings exposed it three times: version 1 learned its dataset, version 2 learned "clean means AI", and no version can tell my voice from a copy of it. Training on a cloning tool (version 4) helped with strangers' voices, at the price of more false alarms.
 
 **The honest answer to "is that really your grandson?"** is that this tool cannot tell you yet. Until one can, the safest advice does not need AI: hang up and call back on a number you already have, or agree a family code word.
 """)

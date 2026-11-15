@@ -17,7 +17,7 @@ This is the long version. The one-page write-up is [README.md](README.md); the n
 | Where does it fail? At least one wrong example, and why | README "Where it fails"; section 4 below; notebook section 6 |
 | Results from test data the model did not see | "Fair testing" below: whole generators and whole datasets are held out; each step was committed before the next was run |
 | Something of your own: user, data or question | README "What we added" |
-| One improvement, made and measured | Version 1 to version 2 (section 2); version 3 (section 5) |
+| One improvement, made and measured | Version 1 to version 2 (section 2); version 3 (section 5); version 4 (section 6) |
 | One main takeaway | README, end of Results |
 | Finance: a measure that fits, precision and recall rather than accuracy | AI voices caught (recall) and real people wrongly flagged, everywhere; precision in "What an alarm means" (section 1) |
 | Finance: train on earlier data, test on later, if the data has dates | The clips have no dates. They are split by generator and by dataset instead |
@@ -27,8 +27,8 @@ This is the long version. The one-page write-up is [README.md](README.md); the n
 | Write-up of about one page, using the template | [README.md](README.md) |
 | Credits: every dataset, model, tutorial and AI tool, with links | "Sources" in the README and below |
 | Rules: built during the weekend; AI is central | First commit Saturday 14 November 2026; the trained detector is the whole product |
-| Rules: public or synthetic data, no personal information without permission | Public datasets, generated voices and my own voice. Nobody else was recorded, and my recordings are not in the repository |
-| Rules: honest results, including weak ones | Sections 4 and 5: it flagged me, and it cannot tell my voice from a copy |
+| Rules: public or synthetic data, no personal information without permission | Public datasets, generated voices and my own voice. Nobody else was recorded, and my recordings are not in the repository. For version 4, cloning tools copied voices of speakers in the public datasets; those audio copies stay on my computer and only the numbers computed from them are published |
+| Rules: honest results, including weak ones | Sections 4 to 6: it flagged me, it cannot tell my voice from a copy, and the fix that helped also doubled false alarms |
 
 ## The problem
 
@@ -49,7 +49,7 @@ It runs as a function in the notebook and as a small web app (`python app.py`) w
 
 Our own idea. The organisers' sample scam-text filter says it cannot catch family-emergency scams, because those contain no scammy words. This project goes after that case, in the form it now takes: a phone call.
 
-- **Our own data.** 14,375 clips in English and Russian: 6,282 real voices from ten public datasets plus two recording sessions of my own voice, and 8,093 fake voices that I generated with eight AI voice generators, including AI copies of my own voice.
+- **Our own data.** 14,375 clips in English and Russian: 6,282 real voices from ten public datasets plus two recording sessions of my own voice, and 8,093 fake voices that I generated with eight AI voice generators, including AI copies of my own voice. A later experiment added 1,060 more fake clips from two voice-cloning tools (section 6).
 - **Our own question.** A detector is trained on today's voice generators and today's recordings. A scam call comes from a generator it has never heard, on a microphone it has never heard, over a phone line. Does it still work then?
 - **Our own user.** For a grandparent there are two different mistakes: missing a fake voice, and calling a real grandchild fake. They are reported separately everywhere.
 
@@ -66,7 +66,7 @@ Our own idea. The organisers' sample scam-text filter says it cannot catch famil
 | **Voice generators** | macOS `say`, Piper, MMS | Silero | Kokoro, Bark, Chatterbox, Vosk, Chatterbox copying my voice |
 | **Real-voice datasets** | FLEURS, LibriSpeech, VoxPopuli, Golos, RuLibriSpeech | English Dialects, SOVA | MInDS-14 (calls to a bank), AMI (meetings), Podlodka (podcast), my own voice (laptop) |
 
-A second recording of my voice (phone) and its AI copy were added later, as a fresh test for version 3 (section 5).
+A second recording of my voice (phone) and its AI copy were added later, as a fresh test for version 3 (section 5). Version 4's experiment has its own extra clips, 800 for training and 260 for testing (section 6).
 
 No FLEURS sentence is shared between train, dev and test. For the other training datasets, the train, dev and test clips come from each dataset's own separate train, validation and test parts. The plan, the settings and the final clip list were each committed to this repository before the test was run; the commit history shows the order.
 
@@ -166,6 +166,43 @@ Two things we learned from this check:
 - **The first failure was the recording, not my voice.** Version 2 flagged 16 of 30 of my laptop recordings and only 2 of 30 of my phone recordings.
 - **A copy sounds like the recording it was made from.** Our guess for why the copies get through: the cloning tool copies the room sound of the phone memo along with the voice, and the detector has never trained on this tool.
 
+### 6. Training on a cloning tool, tested on another
+
+The first item on our "what next" list was to train on cloning tools: the training generators are ordinary text-to-speech, and a scammer uses a cloning tool. We ran that on Saturday night.
+
+**Version 4** is version 3 plus 800 training clips in which one cloning tool (Chatterbox) copies the voice of a real training speaker reading a different training sentence. Nothing else changes. The test is a second cloning tool the detector has never heard, [XTTS-v2](https://huggingface.co/coqui/XTTS-v2): 200 copies of speakers from the never-seen datasets (MInDS-14, AMI, Podlodka) and 60 copies of my own voice, 30 from each recording. The question, the comparison and the rule "whatever comes out is reported" were committed before any of these clips was generated (`results/chosen_v4.json`).
+
+Heard through the phone line:
+
+| | Version 3 | Version 4 |
+|---|---|---|
+| Copies of new speakers by the new tool (XTTS), caught | 44% (88 of 200) | **81% (162 of 200)** |
+| Copies of my voice by the new tool (XTTS), caught | 40 of 60 | 50 of 60 |
+| Copies of my voice by Chatterbox, now a training tool, caught | 34 of 60 | 59 of 60 |
+| The other new generators (Kokoro, Bark, Vosk), caught | 62% (546 of 880) | 67% (590 of 880) |
+| Real people from new datasets, wrongly flagged | 5% (25 of 550) | **12% (67 of 550)** |
+| Real people from known datasets, wrongly flagged | 4% (69 of 1,713) | 6% (103 of 1,713) |
+| My real voice (both recordings), wrongly flagged | 20 of 60 | **30 of 60** |
+
+Training on one cloning tool carries over to another: the catch rate on the unseen tool nearly doubles. But false alarms more than double too, and the real me is now flagged half the time.
+
+**Better, or just more suspicious?** A detector that flags more of everything catches more fakes without being any better. Two checks that do not depend on the alarm level (`scripts/v4_second_look.py`). We added them after seeing the table above, and the matched level is set on test clips, so they are weaker evidence than the planned comparison:
+
+| Copies by the new tool (XTTS) of | | Ranking quality (AUC: 1.0 perfect, 0.5 coin flip) | Caught when exactly 5% of the real voices are flagged |
+|---|---|---|---|
+| New speakers | Version 3 | 0.89 | 48% (95 of 200) |
+| | Version 4 | 0.93 | 56% (112 of 200) |
+| My voice | Version 3 | 0.73 | 9 of 60 |
+| | Version 4 | 0.74 | 15 of 60 |
+
+- **For strangers' voices, both are true.** With false alarms held equal, the catch rate goes from 48% to 56%. That is a real gain, but much smaller than 44% to 81%: about half of the jump came from a lower bar for raising the alarm.
+- **For my own voice, nothing improved.** Version 4 ranks my recordings and the copies of them no better than version 3 (0.74 against 0.73). 60 clips of each is too few to read more into the other column.
+- **Why false alarms went up: a guess.** The alarm level is set on real voices from the training datasets, and it held there (4% to 6%). The extra false alarms are on recordings from microphones the detector never trained on. Our guess is that a cloned clip sounds like the real recording it copies, so learning to flag clones also makes the detector more suspicious of real recordings that sound unfamiliar. We did not test this.
+
+**What went wrong in the run.** The first overnight run lost a generator process and trained on 586 of the 800 clips. We kept that result as it came out (`results/v4_partial586.txt`), made the missing 214 clips and scored again. The two runs agree: over the phone line the 586-clip version caught 164 of 200 and 49 of 60 of the new tool's copies and flagged 66 of 550 new real people.
+
+The demo app still runs version 3.
+
 ### The main takeaway
 
 | Situation (version 2, phone line) | AI voices caught |
@@ -176,11 +213,14 @@ Two things we learned from this check:
 
 The further a call is from what the detector trained on, the less it catches. A test that uses the same generators and datasets as training shows 100% and hides all of this. So the honest answer to "is that really your grandson?" is: **this tool cannot tell you yet**, and a 100% score on someone else's detector should not reassure you either.
 
+Version 4 narrows the gap for strangers' voices: it catches 81% of copies made by a cloning tool it never heard. It does not change the answer. It wrongly flags 12% of new real people and half of my own recordings, so an alarm on a familiar voice still tells a grandparent very little.
+
 **Other limits.** The phone line is simulated, not a real call. The fake clips read sentences aloud; they do not act out a scam. The own-voice tests are 60 clips from one person.
 
 ## What we'd do next
 
-- **Train on cloning tools, and hold some out.** The training generators are ordinary text-to-speech. A scammer uses a cloning tool. Train on several of those and test on others never seen.
+- **Bring false alarms down on new microphones.** Version 4 showed that training on a cloning tool helps against another one, and that it makes the detector too suspicious of real recordings it has not heard before. The missing ingredient is real speech from many phones and laptops, in training and in the alarm-level set.
+- **More cloning tools.** Version 4 trains on one and tests on one. Train on several and hold out several.
 - **Real calls.** Play real and cloned voices through an actual phone call and record the other end.
 - **More people.** Recordings from family members, with their permission, especially older voices and accented English.
 - **Do not rely on the voice alone.** The safest advice stays the same whatever the detector says: hang up and call back on a number you already have, or agree a family code word.
@@ -188,7 +228,7 @@ The further a call is from what the detector trained on, the less it catches. A 
 ## Sources
 
 - **Data (real speech):** [FLEURS](https://huggingface.co/datasets/google/fleurs) (Google, CC BY 4.0); [LibriSpeech](https://www.openslr.org/12) (CC BY 4.0); [VoxPopuli](https://github.com/facebookresearch/voxpopuli) (Meta, CC0); [Golos](https://github.com/sberdevices/golos) (SberDevices), through the [10-hour crowd subset](https://huggingface.co/datasets/bond005/sberdevices_golos_10h_crowd); [RuLibriSpeech](https://huggingface.co/datasets/bond005/rulibrispeech); [English Dialects](https://huggingface.co/datasets/ylacombe/english_dialects) (Google, CC BY-SA 4.0); [SOVA RuDevices](https://huggingface.co/datasets/bond005/sova_rudevices); [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) (PolyAI, CC BY 4.0); [AMI](https://huggingface.co/datasets/edinburghcstr/ami) (CC BY 4.0); [Podlodka Speech](https://huggingface.co/datasets/bond005/podlodka_speech); 60 recordings of my own voice (30 on a laptop, 30 on a phone).
-- **Voice generators (fake speech):** macOS `say`; [Piper](https://github.com/OHF-Voice/piper1-gpl) with [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices); [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng) (Meta); [Silero](https://github.com/snakers4/silero-models); [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M); [Bark](https://huggingface.co/suno/bark-small) (Suno); [Chatterbox](https://github.com/resemble-ai/chatterbox) (Resemble AI); [Vosk TTS](https://github.com/alphacep/vosk-tts).
+- **Voice generators (fake speech):** macOS `say`; [Piper](https://github.com/OHF-Voice/piper1-gpl) with [rhasspy/piper-voices](https://huggingface.co/rhasspy/piper-voices); [MMS-TTS](https://huggingface.co/facebook/mms-tts-eng) (Meta); [Silero](https://github.com/snakers4/silero-models); [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M); [Bark](https://huggingface.co/suno/bark-small) (Suno); [Chatterbox](https://github.com/resemble-ai/chatterbox) (Resemble AI); [Vosk TTS](https://github.com/alphacep/vosk-tts). For the version 4 experiment only: Chatterbox as a voice-cloning tool, and [XTTS-v2](https://huggingface.co/coqui/XTTS-v2) (Coqui, non-commercial licence) through [coqui-tts](https://github.com/idiap/coqui-ai-TTS).
 - **Pretrained models:** [XLS-R 300M](https://huggingface.co/facebook/wav2vec2-xls-r-300m) (Meta), used by the detector; [Whisper small](https://huggingface.co/openai/whisper-small) (OpenAI), used only to find the 30 sentences inside my phone memo.
 - **Libraries:** PyTorch, Hugging Face Transformers, scikit-learn, librosa, SciPy, NumPy, pandas, pyarrow, soundfile, matplotlib, Gradio, FFmpeg, Jupyter.
 - **Tutorials:** none.
@@ -202,6 +242,7 @@ git clone https://github.com/ImGosha/clonecheck.git && cd clonecheck
 pip install -r requirements.txt     # enough for the notebook, the scoring scripts and the app
 python scripts/evaluate_test.py     # the main test: re-trains and re-scores from saved features, no audio needed
 python scripts/evaluate_v3.py       # version 3 and the fresh recording
+python scripts/evaluate_v4.py       # version 4: trained on one cloning tool, tested on another
 python app.py                       # the demo app (downloads XLS-R the first time; it runs version 3)
 ```
 
@@ -209,7 +250,7 @@ Rebuilding the audio from scratch also needs `requirements-generate.txt` (the vo
 
 | Path | What it is |
 |---|---|
-| `CloneCheck.ipynb` | The notebook: data, all three versions, every result, every failure |
+| `CloneCheck.ipynb` | The notebook: data, all four versions, every result, every failure |
 | `clonecheck/config.py` | Which generators and datasets are train, dev and test |
 | `clonecheck/audio.py` | Trimming, loudness, the phone-line simulation, added noise and echo |
 | `clonecheck/features.py` | Turning a clip into numbers (MFCC and XLS-R) |

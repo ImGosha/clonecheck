@@ -1,0 +1,17 @@
+pair,version,condition,copies,real,auc,caught_at_5pct_false_alarms
+new speakers,version 3,clean,200,550,0.9260818181818181,118
+new speakers,version 3,phone,200,550,0.8894454545454544,95
+new speakers,version 3,noisy,200,550,0.8669636363636364,86
+new speakers,version 3,gated,200,550,0.892809090909091,103
+new speakers,version 4,clean,200,550,0.9679545454545455,156
+new speakers,version 4,phone,200,550,0.9255727272727273,112
+new speakers,version 4,noisy,200,550,0.9151272727272728,104
+new speakers,version 4,gated,200,550,0.9316636363636364,111
+my voice,version 3,clean,60,60,0.7480555555555556,15
+my voice,version 3,phone,60,60,0.7341666666666666,9
+my voice,version 3,noisy,60,60,0.6622222222222223,8
+my voice,version 3,gated,60,60,0.7455555555555555,15
+my voice,version 4,clean,60,60,0.6838888888888889,9
+my voice,version 4,phone,60,60,0.7394444444444445,15
+my voice,version 4,noisy,60,60,0.6038888888888889,8
+my voice,version 4,gated,60,60,0.6230555555555556,5

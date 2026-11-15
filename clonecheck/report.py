@@ -41,8 +41,9 @@ def clip_counts() -> pd.DataFrame:
     table = clips.assign(who=[NICE.get(w, w) for w in who], role=role).pivot_table(
         index=["label", "role", "who"], columns="split", values="clip_id", aggfunc="count",
         fill_value=0)
-    return table.reindex(columns=["train", "dev", "test"]).sort_index(
-        level=["label", "role"], ascending=[False, False])
+    table = table.reindex(columns=["train", "dev", "test", "train_clones", "test_clones"], fill_value=0)
+    table = table.rename(columns={"train_clones": "experiment: train", "test_clones": "experiment: test"})
+    return table.sort_index(level=["label", "role"], ascending=[False, False])
 
 
 def dev_table(features: str, recipe: str) -> pd.DataFrame:
@@ -248,3 +249,46 @@ def alarm_meaning(caught: float, false_alarm: float, shares=(0.5, 0.1, 0.01)) ->
                      "Alarms that are really AI (precision)": f"{right / (right + wrong):.0%}",
                      "False alarms for every real catch": round(wrong / right, 1)})
     return pd.DataFrame(rows)
+
+
+def clone_experiment(methods: dict, features: dict, clips: pd.DataFrame,
+                     conditions=("clean", "phone", "noisy", "gated")) -> pd.DataFrame:
+    """The cloning-tool experiment: clips flagged as AI, out of the clips in each group.
+
+    For copies that is "caught"; for real voices it is "wrongly flagged".
+    """
+    from .detect import report as score
+    names = {"clean": "Clean", "phone": "Phone line", "noisy": "Background noise",
+             "gated": "Noise suppression"}
+    own_copies = clips["text_source"].isin(["own_xtts", "own2_xtts"])
+    new_real = clips["source"].map(lambda s: REAL_SOURCE_ROLE.get(s) == "test") & (clips["label"] == "real")
+    mine = clips["source"].isin(["own", "own2"])
+    groups = {
+        "Caught: copies of new speakers by the new tool (XTTS)": clips[(clips["engine"] == "xtts_clone") & ~own_copies],
+        "Caught: copies of my voice by the new tool (XTTS)": clips[own_copies],
+        "Caught: copies of my voice by the tool now trained on (Chatterbox)":
+            clips[clips["engine"].isin(["chatterbox_clone", "chatterbox_clone2"])],
+        "Wrongly flagged: real people, new datasets": clips[new_real & ~mine],
+        "Wrongly flagged: my real voice (laptop and phone)": clips[mine],
+    }
+    rows = []
+    for title, part in groups.items():
+        for name, detector in methods.items():
+            table = score(detector, features, part.assign(group=title), ["group"], conditions).set_index("condition")
+            rows.append({"": title, "Method": name,
+                         **{names[c]: f"{int(table.loc[c, 'flagged'])} of {int(table.loc[c, 'clips'])} ({table.loc[c, 'share']:.0%})"
+                            for c in conditions}})
+    return pd.DataFrame(rows).set_index(["", "Method"])
+
+
+def clone_second_look(condition: str = "phone") -> pd.DataFrame:
+    """Checks that do not depend on the alarm level (scripts/v4_second_look.py)."""
+    table = pd.read_csv(RESULTS / "v4_second_look.csv")
+    table = table[table["condition"] == condition]
+    return pd.DataFrame({
+        "Copies by the new tool (XTTS) of": table["pair"].to_numpy(),
+        "Method": table["version"].str.capitalize().to_numpy(),
+        "Ranking quality (AUC: 1.0 perfect, 0.5 coin flip)": table["auc"].round(2).to_numpy(),
+        "Caught when exactly 5% of the real voices are flagged":
+            [f"{k} of {n} ({k / n:.0%})" for k, n in zip(table["caught_at_5pct_false_alarms"], table["copies"])],
+    }).set_index(["Copies by the new tool (XTTS) of", "Method"])
