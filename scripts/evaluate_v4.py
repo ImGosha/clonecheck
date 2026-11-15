@@ -76,6 +76,8 @@ def main() -> None:
         detector = train(features, pd.concat([base, cloned]) if use_cloned else base, "xlsr", layer, train_on)
         set_threshold(detector, features, real_dev, level_from)
         for set_name, part in sets.items():
+            if part.empty:
+                continue
             for lang_group, rows in [("all", part)] + [(g, r) for g, r in part.groupby("lang")]:
                 table = report(detector, features, rows.assign(group=set_name), ["group"], HEARD)
                 tables.append(table.assign(version=name, lang=lang_group, label=rows["label"].iloc[0],
