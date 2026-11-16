@@ -2,6 +2,8 @@
 
 **Track:** AI + Finance
 
+This project is a prototype and is not financial advice.
+
 **Code:** [CloneCheck.ipynb](CloneCheck.ipynb), saved with its outputs ([open in Colab](https://colab.research.google.com/github/ImGosha/clonecheck/blob/main/CloneCheck.ipynb)) · **Long version:** [DETAILS.md](DETAILS.md)
 
 ## The problem
